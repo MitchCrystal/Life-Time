@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react'
 import './App.css';
+import * as ApiClient from './Services/ApiClient'
+// import useMousePosition from './Hooks/useMousePosition';
+import Timeline from './Components/Timeline';
+
 
 function App() {
+
+
+  const [imgList, setImageList] = useState([])
+  // const imgpath = './Assets/'
+  // const locateMouse = useMousePosition()
+
+  useEffect(() => {
+    ApiClient.getImageList()
+    .then(result => setImageList(result))
+  }, [])
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <Timeline imgList={imgList} />
+      <div className='minitimeline'>minitimeline</div>
     </div>
   );
 }

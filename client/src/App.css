@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,41 @@
   to {
     transform: rotate(360deg);
   }
+} */
+body {
+  background-color: rgb(9, 0, 65);
+  /* overflow: hidden; */
+  height: 95vh;
+  width: 100vw;
+  color: white;
 }
+
+.timeline {
+  position: relative;
+  top:240px;
+  display: flex;
+/* items for mobile */
+  /* flex-direction: column;
+  align-items: center; */
+}
+
+.imagebox {
+  background-color: peachpuff;
+  outline: 1px black solid;
+  /* width: 60vmin; */
+  height: 50vmin;
+  min-width: 600px;
+  /*max-width: 60%; */
+  /* height: 400px; */
+  object-fit: cover;
+}
+
+.minitimeline {
+  background-color: red;
+  position: fixed;
+  bottom: 20px;
+  left: 15%;
+  min-height: 50px;
+  min-width: 70%;
+}
+
