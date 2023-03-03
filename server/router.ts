@@ -1,10 +1,11 @@
 import Router from "koa-router";
-import { getImages } from "./controller/controller";
+import { getImages, getMov } from "./controller/controller";
 
 const router = new Router
 
 router.get('/images',getImages)
 
+router.get('/weirdmovs', getMov)
 
 
 export = router

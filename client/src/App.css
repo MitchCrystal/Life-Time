@@ -1,53 +1,30 @@
-/* .App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
 body {
   background-color: rgb(9, 0, 65);
   /* overflow: hidden; */
   height: 95vh;
   width: 100vw;
   color: white;
+  overflow: hidden;
+}
+
+
+.cust-timeline {
+  display: flex;
+}
+
+.cust-imagebox{
+  min-width: 85px;
 }
 
 .timeline {
   position: relative;
   top:240px;
   display: flex;
+  height: 200px;
+  background-color: palegreen;
+  /* width: 720px; */
+  /* flex-wrap: wrap; */
 /* items for mobile */
   /* flex-direction: column;
   align-items: center; */
@@ -56,20 +33,84 @@ body {
 .imagebox {
   background-color: peachpuff;
   outline: 1px black solid;
-  /* width: 60vmin; */
-  height: 50vmin;
-  min-width: 600px;
-  /*max-width: 60%; */
+  width: 60vmin;
+  /* height: 15vmin; */
+  /* min-width: 100px; */
+  /* width: 210px; */
+  max-width: 45%;
   /* height: 400px; */
   object-fit: cover;
+  color: black;
+  font-weight: bolder;
+  text-align: center;
+  /* needed for positioning based on specific times */
+  position: absolute;
 }
 
 .minitimeline {
-  background-color: red;
+  background-color: grey;
   position: fixed;
   bottom: 20px;
   left: 15%;
-  min-height: 50px;
+  height:auto;
+  min-height: 10vh;
   min-width: 70%;
+}
+
+img {
+  /* max-width: 100px; */
+  max-width: 80%;
+}
+
+.testitem {
+  background-color: red;
+  position: absolute;
+}
+
+.createform {
+  background-color: orange;
+}
+
+#minimap {
+  background: rgba(254, 213, 70, .1) -moz-element(#uni) no-repeat center / contain;
+  position: fixed;
+  max-width: 90vw;
+  width: auto;
+  height: auto;
+  /* min-height: 10vh; */
+  left: 15%;
+  bottom: 10%;
+  display: block;
+
+}
+
+#minimap-range {
+  background-color: transparent;
+  opacity: 0.4;
+  /* CHANGED */
+  /* outline: green 3px solid; */
+  /* CHANGED */
+  transition: opacity .2s;
+  margin: 0;
+  padding: 0;
+  max-width: 90vw; /*(NOW same as #minimap's max-WIDTH)*/
+  min-width: 100%;
+  min-height: 10vh;
+  height: auto; /*(NOW same as #minimap's HEIGHT) */
+}
+
+#minimap-range:hover {
+  opacity: 0.6;
+}
+
+#minimap-range::-moz-range-thumb {
+  width: 75px;
+  height: 10vh; /*(NOT same as #minimap's HEIGHT)*/
+  background-color: dodgerblue;
+  cursor: pointer;
+}
+
+#minimap-range::-moz-range-track {
+  background-color: transparent;
 }
 
