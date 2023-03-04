@@ -48,7 +48,7 @@ export async function getImages(ctx: Koa.Context) {
 
 export async function getMov(ctx: Koa.Context) {
   try {
-    const movs = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=123f913733e087d955eea3ed6eb82585&language=en-US&sort_by=revenue.desc&include_adult=false&include_video=false&page=1&primary_release_year=1993&with_watch_monetization_types=flatrate')
+    const movs = await fetch()
     // console.log(movs)
     // console.log(movs.json())
     ctx.body = await movs.json()
