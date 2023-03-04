@@ -1,11 +1,12 @@
 
 body {
   background-color: rgb(9, 0, 65);
-  /* overflow: hidden; */
   height: 95vh;
   width: 100vw;
   color: white;
   overflow: hidden;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-family: 'Outfit', sans-serif;
 }
 
 
@@ -17,12 +18,29 @@ body {
   min-width: 85px;
 }
 
+#whole-TL {
+  /* background-color: red; */
+  position: relative;
+  top:15vh;
+  display: flex;
+}
+
+.buffer {
+  min-width: 50vw;
+  /* background-color: yellow; */
+  /* color: black; */
+}
+
+
+
 .timeline {
   position: relative;
-  top:240px;
+
   display: flex;
-  height: 200px;
+  height: 50vh;
   background-color: palegreen;
+  /* overflow-x: hidden; */
+  flex-shrink: 0;
   /* width: 720px; */
   /* flex-wrap: wrap; */
 /* items for mobile */
@@ -34,18 +52,22 @@ body {
   background-color: peachpuff;
   outline: 1px black solid;
   width: 60vmin;
+  overflow: hidden;
+  max-height: 50vh;
   /* height: 15vmin; */
   /* min-width: 100px; */
   /* width: 210px; */
   max-width: 45%;
   /* height: 400px; */
   object-fit: cover;
+  object-position: center;
   color: black;
   font-weight: bolder;
-  text-align: center;
+  /* text-align: center; */
   /* needed for positioning based on specific times */
   position: absolute;
 }
+
 
 .minitimeline {
   background-color: grey;
@@ -59,7 +81,7 @@ body {
 
 img {
   /* max-width: 100px; */
-  max-width: 80%;
+  max-width: 100%;
 }
 
 .testitem {
@@ -104,7 +126,7 @@ img {
 }
 
 #minimap-range::-moz-range-thumb {
-  width: 75px;
+  width: 5px;
   height: 10vh; /*(NOT same as #minimap's HEIGHT)*/
   background-color: dodgerblue;
   cursor: pointer;
@@ -114,3 +136,31 @@ img {
   background-color: transparent;
 }
 
+.vertical {
+  background-color: rgb(0, 0, 0, 0.3);
+  color: white;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.customplaceholder {
+  background-color: yellow;
+  color: black;
+}
+
+.time-marker {
+  color: white;
+  background-color: rgb(131, 201, 244, 0.5);
+  position: absolute;
+  top: -50px;
+  padding: 5px 15px;
+  font-size: 2rem;
+}
+
+h2 {
+  position: fixed;
+  right: 5%;
+}

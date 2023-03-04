@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef, useLayoutEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './App.css';
 import * as ApiClient from './Services/ApiClient'
 // import useMousePosition from './Hooks/useMousePosition';
 import Timeline from './Components/Timeline';
 import CreateTL from './Components/CreateTL';
-import CustomTimeline from './Components/CustomTimeline';
+//import CustomTimeline from './Components/CustomTimeline';
 
 function App() {
 
@@ -18,9 +18,9 @@ function App() {
   const miniMapRef = useRef(null);
   const miniMapRangeRef = useRef(null);
 
-  const [bigTLWidth, setBigTLWidth] = useState(0);
-  const [miniTLWidth, setMiniTLWidth] = useState(0);
-  const [miniTLRangeWidth, setMiniTLRangeWidth] = useState(0);
+  // const [bigTLWidth, setBigTLWidth] = useState(0);
+  // const [miniTLWidth, setMiniTLWidth] = useState(0);
+  // const [miniTLRangeWidth, setMiniTLRangeWidth] = useState(0);
 
   // useEffect(() => {
   //   if (tlref.current) {
@@ -42,7 +42,7 @@ function App() {
 
 
   function handleMiniScroll(event) {
-       window.scrollTo({top: 0, left: (tlref.current.offsetWidth) * (event.target.value / 100), behavior:'smooth'})
+       window.scrollTo({top: 0, left: ((tlref.current.offsetWidth) * (event.target.value / 100)), behavior:'smooth'})
     setPosition(event.target.value)
   }
 
@@ -70,7 +70,7 @@ function App() {
       <div id="minimap" className='minitimeline' ref={miniMapRef}>
         <input id="minimap-range" type="range" ref={miniMapRangeRef} value={position} max="100" onChange={handleMiniScroll}></input>
       </div>
-      <CustomTimeline custTL={custTL} setCustTL={setCustTL } />
+      {/* <CustomTimeline custTL={custTL} setCustTL={setCustTL } /> */}
     </div>
   );
 }
