@@ -189,7 +189,7 @@ h2 {
   margin: 0;
 }
 
-/* #counter {
+/* .counter {
   background-color: blueviolet;
   position: absolute;
   width:2000px;
@@ -209,4 +209,63 @@ h2 {
   100% {
     opacity: 1;
   }
+}
+
+body[data-shown='false'] main {
+  transform: translateY(-150%);
+  transition: transform 1000ms ease;
+}
+
+body[data-shown='false'] #minimap
+{
+transform: translateY(-900%);
+transition: transform 1000ms ease;
+}
+
+body[data-shown='true'] main {
+  transform: translateY(0%);
+  transition: transform 1000ms ease;
+}
+
+body[data-shown='true'] #minimap {
+  transform: translateY(0%);
+  transition: transform 1000ms ease;
+}
+
+.further-info {
+  background-color: rgb(15, 50, 249, 0.2);
+  color: black;
+  position: fixed;
+  animation: fadeIn 5s;
+  width: 80vw;
+  height: 70vh;
+  /* bottom: 200px; */
+  left: 10vw;
+  bottom: -70%;
+
+}
+
+body[data-shown='false'] .further-info {
+transform: translateY(-120%);
+  transition: transform 1000ms ease;
+}
+
+body[data-shown='true'] .further-info {
+  transform: translateY(0%);
+  transition: transform 1000ms ease;
+}
+
+h3 {
+  color: white;
+  padding: 5px 25px;
+}
+
+button {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  height: 5rem;
+  width: 5rem;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
