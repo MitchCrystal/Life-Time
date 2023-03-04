@@ -11,7 +11,7 @@ const width = 200
   return (<div className="customplaceholder">custom
     {custTL.arrayTL && <div className='cust-timeline' style={{ width: compound_width }}>
       {custTL.arrayTL.map(segment => <div className='cust-imagebox' key={segment}>{segment}
-        {/* <img src={imgList[segment - 1].picture} title={imgList[timesegment - 1].alt} draggable='false'></img> */}
+        {/* <img src={imgList[segment - 1].picture} className="timeline-image" title={imgList[timesegment - 1].alt} draggable='false'></img> */}
       </div>)}
     </div>}
  </div>)

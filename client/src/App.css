@@ -4,9 +4,10 @@ body {
   height: 95vh;
   width: 100vw;
   color: white;
-  overflow: hidden;
+  margin: 0;
+  /* overflow: hidden; */
   font-family: 'Atkinson Hyperlegible', sans-serif;
-    font-family: 'Outfit', sans-serif;
+    /* font-family: 'Outfit', sans-serif; */
 }
 
 
@@ -26,7 +27,7 @@ body {
 }
 
 .buffer {
-  min-width: 50vw;
+  min-width: 100vw;
   /* background-color: yellow; */
   /* color: black; */
 }
@@ -38,7 +39,7 @@ body {
 
   display: flex;
   height: 50vh;
-  background-color: palegreen;
+  background-color: rgb(15, 50, 249, 0.2);
   /* overflow-x: hidden; */
   flex-shrink: 0;
   /* width: 720px; */
@@ -50,7 +51,8 @@ body {
 
 .imagebox {
   background-color: peachpuff;
-  outline: 1px black solid;
+  display: flex;
+  /* outline: 1px black solid; */
   width: 60vmin;
   overflow: hidden;
   max-height: 50vh;
@@ -59,15 +61,24 @@ body {
   /* width: 210px; */
   max-width: 45%;
   /* height: 400px; */
-  object-fit: cover;
-  object-position: center;
+
   color: black;
   font-weight: bolder;
   /* text-align: center; */
   /* needed for positioning based on specific times */
   position: absolute;
+  cursor: pointer;
+  transition-timing-function: ease;
+    transition-duration: 400ms;
 }
 
+.imagebox:hover {
+  transform: scale(1.04);
+}
+
+.imagebox:active {
+  transform: scale(1);
+}
 
 .minitimeline {
   background-color: grey;
@@ -79,10 +90,13 @@ body {
   min-width: 70%;
 }
 
-img {
+.timeline-image {
   /* max-width: 100px; */
   max-width: 100%;
-}
+  object-fit: cover;
+    object-position: center;
+ }
+
 
 .testitem {
   background-color: red;
@@ -136,14 +150,19 @@ img {
   background-color: transparent;
 }
 
-.vertical {
+.imagelabel {
   background-color: rgb(0, 0, 0, 0.3);
   color: white;
   position: absolute;
-  right: 0px;
-  bottom: 0px;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  font-size: 1.5rem;
+  right: 6px;
+  bottom: 6px;
+  padding: 2px 5px; /*switch values around if using below*/
+  /* QUESTION DO I WANT THIS */
+  /* max-height: 93%; */
+  /* writing-mode: vertical-rl;
+  transform: rotate(180deg); */
+  backdrop-filter: blur(10px);
 }
 
 .customplaceholder {
@@ -155,12 +174,39 @@ img {
   color: white;
   background-color: rgb(131, 201, 244, 0.5);
   position: absolute;
-  top: -50px;
+  top: -60px;
   padding: 5px 15px;
   font-size: 2rem;
 }
 
 h2 {
   position: fixed;
+  /* background-color: red; */
   right: 5%;
+  top: 5%;
+  font-size: 1.8rem;
+  animation: fadeIn 5s;
+  margin: 0;
+}
+
+/* #counter {
+  background-color: blueviolet;
+  position: absolute;
+  width:2000px;
+  left: 200%;
+  height: 50px;
+} */
+
+.bigbang {
+
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

@@ -7,7 +7,9 @@ import { forwardRef, useEffect } from "react"
 //export default function Timeline({ imgList }) {
 const Timeline = forwardRef(({imgList}, tlref)=>{
   // const locateMouse = useMousePosition()
-const [counter, setCounter] = useState(0)
+  const [counter, setCounter] = useState('0')
+  const [counterVis, setCounterVis] = useState('hidden')
+  const [furtherInfoBox, setFurtherInfoBox] = useState('')
 
   const segmentsArr = [
     { timeago: 13.8, placement: 0 },
@@ -41,12 +43,19 @@ const [counter, setCounter] = useState(0)
       // console.log(window.scrollX/document.body.scrollWidth*100)
       let percent = Math.ceil(window.scrollX / document.body.scrollWidth * 100)
 
-      setCounter(Math.ceil(13.8*(window.scrollX/document.body.scrollWidth)))
+      setCounter(Math.ceil(13800000000*(window.scrollX/document.body.scrollWidth)))
     };
     window.addEventListener('scroll', handlePageScroll);
     return ()=>{window.removeEventListener('scroll',handlePageScroll)}
 
-  },[])
+    }, [])
+
+  // counter >= 1000000000 ? setCounterVis('shown') : setCounterVis('hidden')
+
+  function handleImageClick(event) {
+    console.log(event.target)
+    setFurtherInfoBox(event.target)
+  }
 
 
 const width = 2000
@@ -54,16 +63,16 @@ const compound_width = imgList? width*segmentsArr.length*2: 0
 //console.log(imgList)
 
   return (<><h1>History of the Universe</h1>
-    <h2>Counting Clock: {counter}</h2>
+    {counter >= 1000000000 && <div id="counter"><h2>{counter.toLocaleString('en-GB')} years since Big Bang</h2></div>}
     {imgList.length > 0 &&
       <div id="whole-TL">
-        <div className="buffer">start buffer</div>
+        <div className="buffer bigbang">start buffer</div>
         <div id="uni" className='timeline' style={{ width: compound_width }} ref={tlref}>
 
           {imgList.map(image =>
           <div className='imagebox' key={image.id} style={{ left: image.timeline + '%' }}>
-            <img src={image.picture} title={image.alt} draggable='false'></img>
-            <div className="vertical">{image.alt}</div>
+            <img className="timeline-image" src={image.picture} title={image.alt} draggable='false' onClick={handleImageClick}></img>
+            <div className="imagelabel">{image.alt}</div>
             </div>)}
           {segmentsArr.map(segment =>
             <div key={segment.timeago} style={{ left: segment.placement+'%'}} className="time-marker">{typeof segment.timeago === 'number' ? segment.timeago+' billion years ago': segment.timeago}</div>
@@ -72,6 +81,9 @@ const compound_width = imgList? width*segmentsArr.length*2: 0
         </div>
         <div className="buffer">end buffer</div>
       </div>}
+    {/*thing is true && */
+      <div className="further-info">Put further info here
+    </div>}
        {/* {imgList.length > 0 && <div id="uni" className='timeline' style={{ width: width }} ref={tlref}>
       {imgList.map(image => <div className='imagebox' key={image.id}>
         <img src={image.picture} title={image.alt} draggable='false'></img>

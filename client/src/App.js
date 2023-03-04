@@ -42,7 +42,7 @@ function App() {
 
 
   function handleMiniScroll(event) {
-       window.scrollTo({top: 0, left: ((tlref.current.offsetWidth) * (event.target.value / 100)), behavior:'smooth'})
+       window.scrollTo({top: 0, left: ((tlref.current.offsetWidth+window.innerWidth) * (event.target.value / 100)), behavior:'smooth'})
     setPosition(event.target.value)
   }
 
