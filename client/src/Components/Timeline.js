@@ -53,24 +53,22 @@ const Timeline = forwardRef(({imgList}, tlref)=>{
 
   // counter >= 1000000000 ? setCounterVis('shown') : setCounterVis('hidden')
 
-
-  //WORK IN PROGRESS!!!!!
   async function handleImageClick(event) {
-     //console.log(+event.target.dataset.nav)
-    // await getWikiID(event.target.dataset.nav)
-    //   .then(async result => {
-        await getWikiDetail(38058647)
-      // })
-      .then(result => console.log(result))
-        //setFurtherInfoBox(result.query.search[0].snippet)
-
-     //setFurtherInfoBox(+event.target.dataset.nav)
-
+    await getWikiID(event.target.dataset.nav)
+      .then(async result => {
+        console.log(result.query.search[0]);
+        await getWikiDetail(result.query.search[0].pageid)
+      })
+      .then(result => setFurtherInfoBox(result.query.pages[0].extract))
     document.body.dataset.shown = 'true'
   }
 
   function handleButtonClick(event) {
     document.body.dataset.shown = 'false'
+  }
+
+  function handleLogoClick(event) {
+    
   }
 
 const width = 430
@@ -79,10 +77,10 @@ const width = 430
 
 
   return (<>
-    {/* <div id="splash"><div id="page-title">Life/Time</div>
-    <img id='logo' src="/logo.png"></img>
+    <div id="splash"><div id="page-title">Life/Time</div>
+    <img id='logo' src="/logo.png" onClick={handleLogoClick}></img>
       <span style={{ color: '#ffb700' }}>Click the logo to trigger the Big Bang</span>
-    </div> */}
+    </div>
 
     <main>
     <h1>History of the Universe</h1>

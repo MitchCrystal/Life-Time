@@ -16,9 +16,6 @@ export async function getWikiID(wikiIDsearch) {
 }
 
 export async function getWikiDetail(wikiID) {
-  console.log('gets called')
   const result = await fetch(wikiUrlForDetail + wikiID + detailSuffix)
-  console.log(result)
-  console.log('succeeds')
-   return result.json()
+  return result.json()
  }

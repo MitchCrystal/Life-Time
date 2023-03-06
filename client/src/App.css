@@ -314,6 +314,7 @@ span {
   height: 10vmin;
   width: 10vmin;
   margin: 6vmin;
+
 }
 
 #logo:hover {
@@ -338,4 +339,8 @@ span {
 
 100% { transform: translate(-10px, -10px); }
 
+}
+
+#logo:active {
+  transform: scale(0.96);
 } */
