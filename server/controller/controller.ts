@@ -24,7 +24,7 @@ export async function getImages(ctx: Koa.Context) {
   { id: 13, picture: '14-multicellular.jpg', timeline: 95.5797, alt: "Multicellular Life Begins", constraint:'5vw'},
   { id: 14, picture: '15-ozone layer.webp', timeline: 95.6522, alt: "Ozone Layer Forms", constraint:'5vw' },
   { id: 15, picture: '16-comb_jelly4_h.jpg', timeline: 95.7971, alt: "First Animals", constraint:'30vw' },
-  { id: 16, picture: '17-Cooksonia_NT.jpg', timeline: 96.3768, alt: "First Plants", constraint:'30vw' },
+  { id: 16, picture: '17-Cooksonia_NT.jpg', timeline: 96.3768, alt: "First Plants", constraint:'29vw' },
   { id: 17, picture: '18-lifeonland.jpg', timeline: 96.8841, alt: "Life on Land", constraint: '60vw'},
   { id: 18, picture: '19-eoraptor.webp', timeline: 98.2609, alt: "First Dinosaurs", constraint: '15vw'},
   { id: 19, picture: '20-earlymammals.jpg', timeline: 98.5507, alt: "First Mammals", constraint: '20vw'},

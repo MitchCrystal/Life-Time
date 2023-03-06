@@ -3,8 +3,8 @@
 // import React, { useRef, useEffect, useState } from "react"
 import React, { useState } from "react"
 import { forwardRef, useEffect } from "react"
-import jsonedStuff from "../Services/movies1993"
-import { getWiki } from "../Services/ApiClient"
+import { getWikiDetail, getWikiID } from "../Services/ApiClient"
+
 
 //export default function Timeline({ imgList }) {
 const Timeline = forwardRef(({imgList}, tlref)=>{
@@ -29,7 +29,7 @@ const Timeline = forwardRef(({imgList}, tlref)=>{
     { timeago: 3, placement: 78.3 },
     { timeago: 2, placement: 85.5 },
     { timeago: 1, placement: 92.8 },
-    { timeago: 'Now', placement: 100 }]
+    { timeago: 0, placement: 100 }]
   // const imgpath = './Assets/'
 
 
@@ -53,10 +53,17 @@ const Timeline = forwardRef(({imgList}, tlref)=>{
 
   // counter >= 1000000000 ? setCounterVis('shown') : setCounterVis('hidden')
 
-  function handleImageClick(event) {
+
+  //WORK IN PROGRESS!!!!!
+  async function handleImageClick(event) {
      //console.log(+event.target.dataset.nav)
-    getWiki(event.target.dataset.nav)
-      .then(result => { setFurtherInfoBox(result.query.search[0].snippet)})
+    // await getWikiID(event.target.dataset.nav)
+    //   .then(async result => {
+        await getWikiDetail(38058647)
+      // })
+      .then(result => console.log(result))
+        //setFurtherInfoBox(result.query.search[0].snippet)
+
      //setFurtherInfoBox(+event.target.dataset.nav)
 
     document.body.dataset.shown = 'true'
@@ -66,21 +73,27 @@ const Timeline = forwardRef(({imgList}, tlref)=>{
     document.body.dataset.shown = 'false'
   }
 
-
-
-const width = 230
-  const compound_width = imgList ? width * segmentsArr.length * 2 : 0
+const width = 430
+  const compound_width = imgList ? width * Math.abs(segmentsArr[segmentsArr.length-1].timeago-segmentsArr[0].timeago) : 0
   const fullwidth = compound_width + (200)
-//console.log(imgList)
 
-  return (<><main><h1>History of the Universe</h1>
+
+  return (<>
+    {/* <div id="splash"><div id="page-title">Life/Time</div>
+    <img id='logo' src="/logo.png"></img>
+      <span style={{ color: '#ffb700' }}>Click the logo to trigger the Big Bang</span>
+    </div> */}
+
+    <main>
+    <h1>History of the Universe</h1>
     {counter >= 1000000000 && <div><h2 id="time-counter">{counter.toLocaleString('en-GB')} years since Big Bang</h2></div>}
     {imgList.length > 0 && <>
-        <div style={{width: compound_width+'vw', top: '5vh', left: '100vw', position: 'relative'}}>
+        <div style={{width: compound_width+'vw', top: '7.5vh', left: '100vw', position: 'relative'}}>
           {segmentsArr.map(segment =>
-            <div key={segment.timeago} style={{ left: segment.placement+'%'}} className="time-marker">{typeof segment.timeago === 'number' ? segment.timeago+' billion years ago': segment.timeago}</div>
+            <div key={segment.timeago} style={{ left: segment.placement+'%'}} className="time-marker">{segment.timeago !== 0 ? segment.timeago+' billion years ago': 'Now'}</div>
           )}
-        </div>
+      </div>
+
       <div id="wholeTL" style={{ width: fullwidth + 'vw' }}>
         <div className="buffer bigbang"></div>
         <div id="uni" className='timeline' style={{ width: compound_width+'vw' }} ref={tlref}>
@@ -103,12 +116,7 @@ const width = 230
       <button onClick={handleButtonClick}>Back to timeline <span>↑</span></button>
       <div className="info-text">{furtherInfoBox}</div>
     </div>
-       {/* {imgList.length > 0 && <div id="uni" className='timeline' style={{ width: width }} ref={tlref}>
-      {imgList.map(image => <div className='imagebox' key={image.id}>
-        <img src={image.picture} title={image.alt} draggable='false'></img>
-      </div>)}
-    </div>} */}
- </>)
+  </>)
 })
 
 export default Timeline

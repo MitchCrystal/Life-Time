@@ -279,6 +279,7 @@ button {
   position: absolute;
   background-color: bisque;
   word-wrap: break-word;
+  font-size: 2rem;
 }
 
 span {
@@ -286,3 +287,55 @@ span {
   font-size: 2rem;
   /* transform: translateY(500%); */
 }
+
+/* #splash {
+  z-index: 999;
+  opacity: 0.5;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(9, 0, 65);
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#page-title {
+  color: #ffb700;
+  font-size: 6rem;
+  font-weight: bolder;
+  transform: translateY(-4vh);
+}
+
+#logo {
+  height: 10vmin;
+  width: 10vmin;
+  margin: 6vmin;
+}
+
+#logo:hover {
+  animation-name: shake;
+  animation-timing-function: ease;
+  animation-duration: 0.05s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes shake {
+
+0% { transform: translate(0px,0px);}
+
+20% { transform: translate(10px, 10px);}
+
+40% {transform: translate(0px, 0px);}
+
+60% {transform: translate(10px, -10px);}
+
+80% {  transform: translate(0px, 0px);}
+
+100% { transform: translate(-10px, -10px); }
+
+} */
