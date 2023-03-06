@@ -5,11 +5,91 @@ body {
   width: 100vw;
   color: #ffb700;
   margin: 0;
-  /* this overflow-hidden can be used without breaking sticky */
-  /* overflow: hidden; */
   font-family: 'Atkinson Hyperlegible', sans-serif;
 }
 
+#splash {
+  z-index: 999;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(9, 0, 65);
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation-timing-function: ease;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+}
+
+#page-title {
+  color: #ffb700;
+  font-size: 6rem;
+  font-weight: bolder;
+  transform: translateY(-4vh);
+}
+
+#logo {
+  height: 10vmin;
+  width: 10vmin;
+  margin: 6vmin;
+  cursor: pointer;
+
+}
+
+#logo:hover:not(:active) {
+  animation: shake ease 0.05s infinite alternate;
+}
+
+@keyframes shake {
+  0% {transform: translate(0px, 0px);}
+
+  20% {transform: translate(10px, 10px);}
+
+  40% {transform: translate(0px, 0px);}
+
+  60% {transform: translate(10px, -10px);}
+
+  80% {transform: translate(0px, 0px);}
+
+  100% { transform: translate(-10px, -10px); }
+}
+
+#logo:active {
+  transform: scale(0.6);
+}
+
+@keyframes explode {
+  0% {transform: scale(1);}
+
+  10% { transform: scale(100);}
+
+  50% { transform: scale(100); opacity: 1;}
+
+  100% { opacity: 0 }
+}
+
+@keyframes hide {
+  0% { opacity: 1;}
+
+  100% { opacity: 0}
+}
+
+#singularity {
+  z-index: 99999;
+  position: absolute;
+  left: 50vw;
+  border-radius: 50%;
+  width: 4vw;
+  height: 4vh;
+  animation: explode ease 5s forwards;
+  background: rgb(255, 183, 0);
+  background: radial-gradient(circle, rgba(255, 183, 0, 1) 0%, rgba(255, 255, 255, 1) 49%, rgba(255, 255, 255, 1) 100%);
+
+}
 
 
 #time-counter {
@@ -32,7 +112,8 @@ body {
 .buffer {
   min-width: 100vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+
 }
 
 
@@ -41,7 +122,6 @@ body {
   color: white;
   background-color: rgb(131, 201, 244, 0.5);
   position: absolute;
-  /* top: -60px; */
   padding: 5px 15px;
   font-size: 2rem;
   z-index: 2;
@@ -53,7 +133,7 @@ body {
   display: flex;
   height: 50vh;
   top: 5vh;
-background-image: linear-gradient(265deg,
+  background-image: linear-gradient(265deg,
       hsl(240deg 100% 20%) 0%,
       hsl(239deg 67% 23%) 13%,
       hsl(232deg 55% 24%) 24%,
@@ -72,26 +152,23 @@ background-image: linear-gradient(265deg,
 }
 
 .tl-imagebox {
-  /* background-color: peachpuff; */
   display: flex;
-  /* outline: 1px black solid; */
-  /* width: 60vmin; */
   max-height: 50vh;
-  /* min-width: 100px; */
   width: 100vw;
-  /* max-width: 45%; */
   color: black;
   font-weight: bolder;
   /* needed for positioning based on specific times */
   position: absolute;
-/* object-fit: cover;
-  object-position: center; */
 }
 
-#bigbangimgbox {
-  justify-content: center;
-  top: 1vh;
-  width: 60vw;
+#bigbangimgbox, .endimgbox {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5vh;
+  height: 50vh;
+  color: #ffb700;
+
 }
 
 .tl-image-and-tag:hover, button:hover {
@@ -103,10 +180,7 @@ background-image: linear-gradient(265deg,
 }
 
 .tl-image-and-tag {
-  /* max-width: 50vw;
-  height: 50vh; */
   cursor: pointer;
-  /* width: 40vw; */
   overflow: hidden;
   transition-timing-function: ease;
   transition-duration: 400ms;
@@ -122,8 +196,14 @@ background-image: linear-gradient(265deg,
   height: 50vh;
  }
 
+
  #bigbangimg {
   max-width: 60vw;
+ }
+
+ .endimg {
+  height: 30vh;
+  max-width: 20vw;
  }
 
 .tl-imagetag {
@@ -135,9 +215,7 @@ background-image: linear-gradient(265deg,
   bottom: 1vh;
   pointer-events: none;
   padding: 7px 2px;
-  /*switch values around if using below*/
   /* QUESTION DO I WANT THIS */
-  /* max-height: 93%; */
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   backdrop-filter: blur(10px);
@@ -161,7 +239,6 @@ background-image: linear-gradient(265deg,
   position: fixed;
   min-width: 80vw;
   height: auto;
-  /* min-height: 10vh; */
   left: 10%;
   bottom: 10%;
   display: block;
@@ -177,10 +254,10 @@ background-image: linear-gradient(265deg,
   transition: opacity .2s;
   margin: 0;
   padding: 0;
-  max-width: 90vw; /*(NOW same as #minimap's max-WIDTH)*/
+  max-width: 90vw;
   min-width: 100%;
   min-height: 10vh;
-  height: auto; /*(NOW same as #minimap's HEIGHT) */
+  height: auto;
 }
 
 #minimap-range:hover {
@@ -189,7 +266,7 @@ background-image: linear-gradient(265deg,
 
 #minimap-range::-moz-range-thumb {
   width: 10px;
-  height: 10vh; /*(NOT same as #minimap's HEIGHT)*/
+  height: 10vh;
   background-color: dodgerblue;
   cursor: pointer;
 }
@@ -240,18 +317,6 @@ body[data-shown='false'] #minimap {
   transition: transform 1500ms ease;
 }
 
-.further-info {
-  background-color: rgb(15, 50, 249, 0.2);
-  color: black;
-  position: fixed;
-  width: 80vw;
-  height: 70vh;
-  /* bottom: 200px; */
-  left: 10vw;
-  bottom: -75%;
-  box-shadow: 0 0 15px 15px rgb(15, 50, 249, 0.2);
-}
-
 body[data-shown='true'] .further-info {
 transform: translateY(-130%);
   transition: transform 1500ms ease;
@@ -262,9 +327,22 @@ body[data-shown='false'] .further-info {
   transition: transform 1500ms ease;
 }
 
+.further-info {
+  background-color: rgb(15, 50, 249, 0.2);
+  color: black;
+  position: fixed;
+  width: 80vw;
+  height: 70vh;
+  left: 10vw;
+  bottom: -75%;
+  box-shadow: 0 0 15px 15px rgb(15, 50, 249, 0.2);
+}
+
 h3 {
-  color: white;
-  font-size: 2rem;
+  color:#ffb700;
+  font-size: 4rem;
+  position: absolute;
+  left: 3%;
   padding: 15px 30px;
 }
 
@@ -276,6 +354,8 @@ button {
   width: 18rem;
   font-size: 1.5rem;
   font-weight: bold;
+  background-color: #ffb700;
+  border: none;
 }
 
 
@@ -283,11 +363,14 @@ button {
   height: 65%;
   width: 90%;
   left: 5%;
-  /* display: flex; */
+  top:25%;
+  display: flex;
   position: absolute;
-  background-color: bisque;
+  background-color: rgb(255, 228, 196,0);
   word-wrap: break-word;
   font-size: 2rem;
+  color: #ffb700;
+  text-align: justify;
 }
 
 span {
@@ -296,87 +379,22 @@ span {
   margin-top: 1rem;
 }
 
-#splash {
-  z-index: 999;
-  /* opacity: 0.5; */
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(9, 0, 65);
-  left: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation-timing-function: ease;
-  animation-duration: 5s;
-  animation-fill-mode: forwards;
-}
 
-#page-title {
-  color: #ffb700;
-  font-size: 6rem;
+a {
+  text-decoration: none;
   font-weight: bolder;
-  transform: translateY(-4vh);
+  color: #ffb700;
+  font-style: italic;
 }
 
-#logo {
-  height: 10vmin;
-  width: 10vmin;
-  margin: 6vmin;
-  cursor: pointer;
-
+.furtherinfopic {
+  width: 20vmax;
+  height: 20vmax;
+  object-fit: cover;
+  object-position: center;
+  margin-top: 2rem;
 }
 
-#logo:hover:not(:active) {
-  animation-name: shake;
-  animation-timing-function: ease;
-  animation-duration: 0.05s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-@keyframes shake {
-0% { transform: translate(0px,0px);}
-20% { transform: translate(10px, 10px);}
-40% {transform: translate(0px, 0px);}
-60% {transform: translate(10px, -10px);}
-80% {  transform: translate(0px, 0px);}
-100% { transform: translate(-10px, -10px); }
-}
-
-#logo:active {
-  transform: scale(0.6);
-}
-
-@keyframes explode {
-  0% {transform: scale(1);}
-
-  10% { transform: scale(100);}
-  /* 10% { transform: scale(100);} */
-  50% { transform: scale(100); opacity: 1;}
-
-  100% { opacity: 0}
-}
-
-@keyframes hide {
-  0% {opacity: 1;}
-  100% { opacity: 0 }
-}
-
-#singularity {
-  z-index: 99999;
-  position: absolute;
-  left: 50vw;
-  border-radius: 50%;
-  width: 4vw;
-  height: 4vh;
-  animation-name: explode;
-  animation-timing-function: ease;
-  animation-duration: 5s;
-  animation-fill-mode: forwards;
-  background: rgb(255, 183, 0);
-  background: radial-gradient(circle, rgba(255, 183, 0, 1) 0%, rgba(255, 255, 255, 1) 49%, rgba(255, 255, 255, 1) 100%);
-
+p {
+  margin-right: 4rem;
 }

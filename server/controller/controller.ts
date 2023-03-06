@@ -5,10 +5,9 @@ const imageFolder = './Assets'
 
 export async function getImages(ctx: Koa.Context) {
   try {
-    //console.log('controller accessed')
     const imgs = await fs.readdir(imageFolder)
 
-    const imgs2 = [{ id: 0, picture: '01-bigbang.avif', timeline: 0.0000, alt: "Big Bang", constraint: '40vw' },
+    const imgs2 = [{ id: 0, picture: '01-bigbang.avif', timeline: 0.0000, alt: "Big Bang", constraint: '60vw' },
   { id: 1, picture: '02-atomform.webp', timeline: 0.0022, alt: "First Atoms", constraint: '40vw' },
   { id: 2, picture: '03-starform.webp', timeline: 0.7246, alt: "First Stars", constraint: '130vw' },
   { id: 3, picture: '04-1066px-Andromeda_Galaxy.jpg', timeline: 2.8986, alt: "First Galaxies Form", constraint: '345vw' },
@@ -33,8 +32,8 @@ export async function getImages(ctx: Koa.Context) {
   { id: 22, picture: '23-dinosaur-extinction.jpg', timeline: 99.5217, alt: "Extinction of Dinosaurs", constraint:'15vw' },
   { id: 23, picture: '24-Proconsul.webp', timeline: 99.8986, alt: "First Apes Appear", constraint:'5vw' },
   { id: 24, picture: '25-Image+600+H+habilis.jpg', timeline: 99.9819, alt: "Primitive Ancestors of Humans Appear", constraint: '5vw'},
-  { id: 25, picture: '26-homo sapiens.jpeg', timeline: 99.9986, alt: "Homo Sapiens Appear", constraint: '5vw'},
-  { id: 26, picture: '27- stonehenge.webp', timeline: 100.0000, alt: "Stonehenge is Built", constraint:'5vw' }]
+  { id: 25, picture: '26-homo sapiens.jpeg', timeline: 99.9986, alt: "Homo Sapiens Appear", constraint: '20vw'},
+  { id: 26, picture: '27- stonehenge.webp', timeline: 100.0000, alt: "Stonehenge is Built", constraint:'20vw' }]
 
     ctx.body = JSON.stringify(imgs2);
     //console.log(ctx.body)

@@ -12,29 +12,11 @@ function App() {
   const [imgList, setImageList] = useState([])
   const [position, setPosition] = useState(0)
   const [miniMapScroll, setMiniMapScroll] = useState('0%')
-  // const imgpath = './Assets/'
   // const locateMouse = useMousePosition()
 
   const tlref = useRef(null);
   const miniMapRef = useRef(null);
   const miniMapRangeRef = useRef(null);
-
-  // const [bigTLWidth, setBigTLWidth] = useState(0);
-  // const [miniTLWidth, setMiniTLWidth] = useState(0);
-  // const [miniTLRangeWidth, setMiniTLRangeWidth] = useState(0);
-
-  // useEffect(() => {
-  //   if (tlref.current) {
-  //     setBigTLWidth(tlref.current.offsetWidth);
-  //     //console.log(bigTLWidth)
-  //   }
-  //   // if (miniMapRef.current) {
-  //   //   setMiniTLWidth(miniMapRef.current.offsetWidth);
-  //   //   //console.log(miniTLWidth)
-  // //  }
-  // }, [tlref.current/*, miniMapRef.current*/]);
-
-
 
   useEffect(() => {
     ApiClient.getImageList()
@@ -59,6 +41,7 @@ function App() {
 
     }, [])
 
+  //NEED TO REVISIT
   // useEffect(() => {
   //   function handlePageScroll(event) {
   //     // console.log(window.scrollX)
@@ -68,7 +51,6 @@ function App() {
   //   };
   //   window.addEventListener('scroll', handlePageScroll);
   //   return ()=>{window.removeEventListener('scroll',handlePageScroll)}
-
   // },[])
 
 
@@ -76,7 +58,6 @@ function App() {
     <div className="App">
       <header className="App-header">
       </header>
-      {/* <div>{bigTLWidth} just marking bigtimeline width</div> */}
       <CreateTL custTL={custTL} setCustTL={setCustTL }  />
       <Timeline imgList={imgList} ref={tlref}  />
       <div id="minimap" className='minitimeline' ref={miniMapRef} style={{ backgroundPosition: miniMapScroll }}>
