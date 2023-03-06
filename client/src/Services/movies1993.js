@@ -321,6 +321,7 @@ const stufftoJson = [
     }
 ]
 
-const jsonedStuff = JSON.stringify(stufftoJson)
+const jsonedStuff = []
+  stufftoJson.forEach((element) => jsonedStuff.push(JSON.stringify(element)))
 
 export default jsonedStuff

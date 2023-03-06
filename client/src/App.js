@@ -11,6 +11,7 @@ function App() {
   const [custTL, setCustTL] = useState({})
   const [imgList, setImageList] = useState([])
   const [position, setPosition] = useState(0)
+  const [miniMapScroll, setMiniMapScroll] = useState('0%')
   // const imgpath = './Assets/'
   // const locateMouse = useMousePosition()
 
@@ -47,6 +48,17 @@ function App() {
   }
 
 
+  useEffect(() => {
+    function handlePageScroll(event) {
+      let currentScroll = window.scrollX / (document.body.scrollWidth - window.innerWidth)
+      let miniMapPercent = (currentScroll * 100)
+      100 <= miniMapPercent ? setMiniMapScroll('100%') : setMiniMapScroll(miniMapPercent + '%')
+    };
+    window.addEventListener('scroll', handlePageScroll);
+    return ()=>{window.removeEventListener('scroll',handlePageScroll)}
+
+    }, [])
+
   // useEffect(() => {
   //   function handlePageScroll(event) {
   //     // console.log(window.scrollX)
@@ -67,7 +79,7 @@ function App() {
       {/* <div>{bigTLWidth} just marking bigtimeline width</div> */}
       <CreateTL custTL={custTL} setCustTL={setCustTL }  />
       <Timeline imgList={imgList} ref={tlref}  />
-      <div id="minimap" className='minitimeline' ref={miniMapRef}>
+      <div id="minimap" className='minitimeline' ref={miniMapRef} style={{ backgroundPosition: miniMapScroll }}>
         <input id="minimap-range" type="range" ref={miniMapRangeRef} value={position} max="100" onChange={handleMiniScroll}></input>
       </div>
       {/* <CustomTimeline custTL={custTL} setCustTL={setCustTL } /> */}

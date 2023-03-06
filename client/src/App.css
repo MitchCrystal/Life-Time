@@ -5,98 +5,131 @@ body {
   width: 100vw;
   color: white;
   margin: 0;
+  /* this overflow-hidden can be used without breaking sticky */
   /* overflow: hidden; */
   font-family: 'Atkinson Hyperlegible', sans-serif;
-    /* font-family: 'Outfit', sans-serif; */
 }
 
 
-.cust-timeline {
-  display: flex;
+
+#time-counter {
+  position: fixed;
+  right: 5%;
+  top: 5%;
+  color: white;
+  font-size: 1.7rem;
+  animation: fadeIn 5s;
+  margin: 0;
 }
 
-.cust-imagebox{
-  min-width: 85px;
-}
-
-#whole-TL {
-  /* background-color: red; */
+#wholeTL {
   position: relative;
-  top:15vh;
+  top:8vh;
   display: flex;
+  height: 55vh;
 }
 
 .buffer {
   min-width: 100vw;
-  /* background-color: yellow; */
-  /* color: black; */
 }
 
+
+
+.time-marker {
+  color: white;
+  background-color: rgb(131, 201, 244, 0.5);
+  position: absolute;
+  /* top: -60px; */
+  padding: 5px 15px;
+  font-size: 2rem;
+  z-index: 2;
+}
 
 
 .timeline {
   position: relative;
-
   display: flex;
   height: 50vh;
-  background-color: rgb(15, 50, 249, 0.2);
-  /* overflow-x: hidden; */
+  top: 5vh;
+background-image: linear-gradient(265deg,
+      hsl(240deg 100% 20%) 0%,
+      hsl(239deg 67% 23%) 13%,
+      hsl(232deg 55% 24%) 24%,
+      hsl(219deg 50% 25%) 35%,
+      hsl(203deg 50% 24%) 45%,
+      hsl(185deg 58% 22%) 54%,
+      hsl(218deg 27% 33%) 62%,
+      hsl(258deg 27% 39%) 70%,
+      hsl(275deg 40% 41%) 77%,
+      hsl(284deg 56% 42%) 85%,
+      hsl(290deg 99% 37%) 100%);
   flex-shrink: 0;
-  /* width: 720px; */
-  /* flex-wrap: wrap; */
-/* items for mobile */
+  /* items for mobile */
   /* flex-direction: column;
   align-items: center; */
 }
 
-.imagebox {
-  background-color: peachpuff;
+.tl-imagebox {
+  /* background-color: peachpuff; */
   display: flex;
   /* outline: 1px black solid; */
-  width: 60vmin;
-  overflow: hidden;
+  /* width: 60vmin; */
   max-height: 50vh;
-  /* height: 15vmin; */
   /* min-width: 100px; */
-  /* width: 210px; */
-  max-width: 45%;
-  /* height: 400px; */
-
+  width: 100vw;
+  /* max-width: 45%; */
   color: black;
   font-weight: bolder;
-  /* text-align: center; */
   /* needed for positioning based on specific times */
   position: absolute;
-  cursor: pointer;
-  transition-timing-function: ease;
-    transition-duration: 400ms;
+/* object-fit: cover;
+  object-position: center; */
 }
 
-.imagebox:hover {
+.tl-image-and-tag:hover, button:hover {
   transform: scale(1.04);
 }
 
-.imagebox:active {
-  transform: scale(1);
+.tl-image-and-tag:active, button:active {
+  transform: scale(0.96);
 }
 
-.minitimeline {
-  background-color: grey;
-  position: fixed;
-  bottom: 20px;
-  left: 15%;
-  height:auto;
-  min-height: 10vh;
-  min-width: 70%;
-}
-
-.timeline-image {
-  /* max-width: 100px; */
-  max-width: 100%;
-  object-fit: cover;
-    object-position: center;
+.tl-image-and-tag {
+  /* max-width: 50vw;
+  height: 50vh; */
+  cursor: pointer;
+  /* width: 40vw; */
+  overflow: hidden;
+  transition-timing-function: ease;
+  transition-duration: 400ms;
+  position: sticky;
+  left: 0;
+  align-self: flex-start;
  }
 
+ .tl-image {
+  max-width: 40vw;
+  object-fit: cover;
+  object-position: center;
+  height: 50vh;
+ }
+
+.tl-imagetag {
+  background-color: rgb(0, 0, 0, 0.3);
+  color: white;
+  position: absolute;
+  font-size: 1.5rem;
+  left: 0.5vw;
+  bottom: 1vh;
+  pointer-events: none;
+  padding: 7px 2px;
+  /*switch values around if using below*/
+  /* QUESTION DO I WANT THIS */
+  /* max-height: 93%; */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  backdrop-filter: blur(10px);
+}
 
 .testitem {
   background-color: red;
@@ -107,14 +140,17 @@ body {
   background-color: orange;
 }
 
+
 #minimap {
-  background: rgba(254, 213, 70, .1) -moz-element(#uni) no-repeat center / contain;
+  background: rgba(254, 213, 70, .1) -moz-element(#wholeTL) no-repeat;
+  background-size: 300%;
+  background-position: 0%;
+  background-attachment: scroll;
   position: fixed;
-  max-width: 90vw;
-  width: auto;
+  min-width: 80vw;
   height: auto;
   /* min-height: 10vh; */
-  left: 15%;
+  left: 10%;
   bottom: 10%;
   display: block;
 
@@ -140,7 +176,7 @@ body {
 }
 
 #minimap-range::-moz-range-thumb {
-  width: 5px;
+  width: 10px;
   height: 10vh; /*(NOT same as #minimap's HEIGHT)*/
   background-color: dodgerblue;
   cursor: pointer;
@@ -150,122 +186,103 @@ body {
   background-color: transparent;
 }
 
-.imagelabel {
-  background-color: rgb(0, 0, 0, 0.3);
-  color: white;
-  position: absolute;
-  font-size: 1.5rem;
-  right: 6px;
-  bottom: 6px;
-  padding: 2px 5px; /*switch values around if using below*/
-  /* QUESTION DO I WANT THIS */
-  /* max-height: 93%; */
-  /* writing-mode: vertical-rl;
-  transform: rotate(180deg); */
-  backdrop-filter: blur(10px);
-}
 
 .customplaceholder {
   background-color: yellow;
   color: black;
 }
 
-.time-marker {
-  color: white;
-  background-color: rgb(131, 201, 244, 0.5);
-  position: absolute;
-  top: -60px;
-  padding: 5px 15px;
-  font-size: 2rem;
+
+.cust-timeline {
+  display: flex;
 }
 
-h2 {
-  position: fixed;
-  /* background-color: red; */
-  right: 5%;
-  top: 5%;
-  font-size: 1.8rem;
-  animation: fadeIn 5s;
-  margin: 0;
+.cust-imagebox{
+  min-width: 85px;
 }
 
-/* .counter {
-  background-color: blueviolet;
-  position: absolute;
-  width:2000px;
-  left: 200%;
-  height: 50px;
-} */
 
 .bigbang {
-
+/* NEED TO DO SOMETHING WITH THIS!!!! */
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-body[data-shown='false'] main {
-  transform: translateY(-150%);
-  transition: transform 1000ms ease;
-}
-
-body[data-shown='false'] #minimap
-{
-transform: translateY(-900%);
-transition: transform 1000ms ease;
+  0% {opacity: 0;}
+  100% { opacity: 1; }
 }
 
 body[data-shown='true'] main {
-  transform: translateY(0%);
-  transition: transform 1000ms ease;
+  transform: translateY(-150%);
+  transition: transform 1500ms ease;
 }
 
-body[data-shown='true'] #minimap {
+body[data-shown='true'] #minimap
+{
+transform: translateY(-900%);
+transition: transform 1500ms ease;
+}
+
+body[data-shown='false'] main {
   transform: translateY(0%);
-  transition: transform 1000ms ease;
+  transition: transform 1500ms ease;
+}
+
+body[data-shown='false'] #minimap {
+  transform: translateY(0%);
+  transition: transform 1500ms ease;
 }
 
 .further-info {
   background-color: rgb(15, 50, 249, 0.2);
   color: black;
   position: fixed;
-  animation: fadeIn 5s;
   width: 80vw;
   height: 70vh;
   /* bottom: 200px; */
   left: 10vw;
-  bottom: -70%;
-
-}
-
-body[data-shown='false'] .further-info {
-transform: translateY(-120%);
-  transition: transform 1000ms ease;
+  bottom: -75%;
+  box-shadow: 0 0 15px 15px rgb(15, 50, 249, 0.2);
 }
 
 body[data-shown='true'] .further-info {
+transform: translateY(-130%);
+  transition: transform 1500ms ease;
+}
+
+body[data-shown='false'] .further-info {
   transform: translateY(0%);
-  transition: transform 1000ms ease;
+  transition: transform 1500ms ease;
 }
 
 h3 {
   color: white;
-  padding: 5px 25px;
+  font-size: 2rem;
+  padding: 15px 30px;
 }
 
 button {
   position: absolute;
   top: 40px;
   right: 40px;
-  height: 5rem;
-  width: 5rem;
-  font-size: 2.5rem;
+  height: 4rem;
+  width: 18rem;
+  font-size: 1.5rem;
   font-weight: bold;
+}
+
+
+.info-text {
+  height: 65%;
+  width: 90%;
+  left: 5%;
+  /* display: flex; */
+  position: absolute;
+  background-color: bisque;
+  word-wrap: break-word;
+}
+
+span {
+  /* font-weight: bolder; */
+  font-size: 2rem;
+  /* transform: translateY(500%); */
 }

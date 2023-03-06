@@ -3,13 +3,16 @@
 // import React, { useRef, useEffect, useState } from "react"
 import React, { useState } from "react"
 import { forwardRef, useEffect } from "react"
+import jsonedStuff from "../Services/movies1993"
+import { getWiki } from "../Services/ApiClient"
 
 //export default function Timeline({ imgList }) {
 const Timeline = forwardRef(({imgList}, tlref)=>{
   // const locateMouse = useMousePosition()
   const [counter, setCounter] = useState(0)
-  const [counterVis, setCounterVis] = useState('hidden')
-  const [furtherInfoBox, setFurtherInfoBox] = useState('')
+  //const [counterVis, setCounterVis] = useState('hidden')
+  const [furtherInfoBox, setFurtherInfoBox] = useState(0)
+
 
   const segmentsArr = [
     { timeago: 13.8, placement: 0 },
@@ -26,25 +29,21 @@ const Timeline = forwardRef(({imgList}, tlref)=>{
     { timeago: 3, placement: 78.3 },
     { timeago: 2, placement: 85.5 },
     { timeago: 1, placement: 92.8 },
-    { timeago: 'Now', placement: 99.824 }]
+    { timeago: 'Now', placement: 100 }]
   // const imgpath = './Assets/'
 
-  const FAKETEXTCONTENT = ''
-// const [width, setWidth] = useState(0)
-// const ref = useRef(null);
 
-  // useEffect(() => {
-  //   setWidth(ref.current.getBoundingClientRect().width)
-  // }, []);
 
     useEffect(() => {
-    function handlePageScroll(event) {
-      // console.log(window.scrollX)
-      // console.log(document.body.scrollWidth)
-      // console.log(window.scrollX/document.body.scrollWidth*100)
-      //let percent = Math.ceil(window.scrollX / document.body.scrollWidth * 100)
-// console.log(window.scrollX+(window.innerWidth/20)+'px')
-      setCounter(Math.ceil(13800000000 * (window.scrollX / document.body.scrollWidth)))
+      function handlePageScroll(event) {
+
+        let currentScroll = window.scrollX / (document.body.scrollWidth - window.innerWidth)
+        //console.log(Math.ceil(currentScroll * 100) + '%')
+
+        const maxTime = 13800000000
+      let currentTime = Math.ceil(maxTime * currentScroll )
+      maxTime <= currentTime ? setCounter(maxTime) : setCounter(currentTime)
+     // setCounter(Math.ceil(maxtime * (window.scrollX / (document.body.scrollWidth-window.innerWidth))))
 
     };
     window.addEventListener('scroll', handlePageScroll);
@@ -55,47 +54,54 @@ const Timeline = forwardRef(({imgList}, tlref)=>{
   // counter >= 1000000000 ? setCounterVis('shown') : setCounterVis('hidden')
 
   function handleImageClick(event) {
-    // console.log(event.target.dataset.nav)
-    setFurtherInfoBox(event.target.dataset.nav)
-    document.body.dataset.shown = 'false'
-  }
+     //console.log(+event.target.dataset.nav)
+    getWiki(event.target.dataset.nav)
+      .then(result => { setFurtherInfoBox(result.query.search[0].snippet)})
+     //setFurtherInfoBox(+event.target.dataset.nav)
 
-   function handleButtonClick(event) {
-    // console.log(event.target.dataset.nav)
-    setFurtherInfoBox(event.target.dataset.nav)
     document.body.dataset.shown = 'true'
   }
 
+  function handleButtonClick(event) {
+    document.body.dataset.shown = 'false'
+  }
 
 
-const width = 2000
-const compound_width = imgList? width*segmentsArr.length*2: 0
+
+const width = 230
+  const compound_width = imgList ? width * segmentsArr.length * 2 : 0
+  const fullwidth = compound_width + (200)
 //console.log(imgList)
 
   return (<><main><h1>History of the Universe</h1>
-    {counter >= 1000000000 && <div id="counter"><h2>{counter.toLocaleString('en-GB')} years since Big Bang</h2></div>}
-    {imgList.length > 0 &&
-      <div id="whole-TL">
-        <div className="buffer bigbang">start buffer</div>
-        <div id="uni" className='timeline' style={{ width: compound_width }} ref={tlref}>
-
-          {imgList.map(image =>
-          <div className='imagebox' key={image.id} style={{ left: image.timeline + '%' }}>
-              <img className="timeline-image" src={image.picture} title={image.alt} draggable='false' data-nav={image.id} onClick={handleImageClick}></img>
-            <div className="imagelabel">{image.alt}</div>
-            </div>)}
+    {counter >= 1000000000 && <div><h2 id="time-counter">{counter.toLocaleString('en-GB')} years since Big Bang</h2></div>}
+    {imgList.length > 0 && <>
+        <div style={{width: compound_width+'vw', top: '5vh', left: '100vw', position: 'relative'}}>
           {segmentsArr.map(segment =>
             <div key={segment.timeago} style={{ left: segment.placement+'%'}} className="time-marker">{typeof segment.timeago === 'number' ? segment.timeago+' billion years ago': segment.timeago}</div>
-            )}
+          )}
+        </div>
+      <div id="wholeTL" style={{ width: fullwidth + 'vw' }}>
+        <div className="buffer bigbang"></div>
+        <div id="uni" className='timeline' style={{ width: compound_width+'vw' }} ref={tlref}>
+
+          {imgList.map(image =>
+            <div className='tl-imagebox' key={image.id} style={{ left: image.timeline + '%', width: image.constraint }}>
+              <div className="tl-image-and-tag">
+              <img className="tl-image" src={image.picture} title={image.alt} alt={image.alt} draggable='false' data-nav={image.alt} onClick={handleImageClick}></img>
+            <div className="tl-imagetag">{image.alt}</div>
+                </div>
+            </div>)}
 
         </div>
-        <div className="buffer">end buffer</div>
-      </div>}
+        <div className="buffer"></div>
+      </div></>}
     </main>
 
     <div className="further-info">
       <h3>Put further info here</h3>
-            <button onClick={handleButtonClick}>A</button>
+      <button onClick={handleButtonClick}>Back to timeline <span>↑</span></button>
+      <div className="info-text">{furtherInfoBox}</div>
     </div>
        {/* {imgList.length > 0 && <div id="uni" className='timeline' style={{ width: width }} ref={tlref}>
       {imgList.map(image => <div className='imagebox' key={image.id}>
