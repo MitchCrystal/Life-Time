@@ -12,7 +12,8 @@ const Timeline = forwardRef(({imgList}, tlref)=>{
   const [counter, setCounter] = useState(0)
   //const [counterVis, setCounterVis] = useState('hidden')
   const [furtherInfoBox, setFurtherInfoBox] = useState(0)
-
+  const [splashVis, setSplashVis] = useState(true)
+const [bigBang, setBigBang] = useState(0)
 
   const segmentsArr = [
     { timeago: 13.8, placement: 0 },
@@ -56,8 +57,8 @@ const Timeline = forwardRef(({imgList}, tlref)=>{
   async function handleImageClick(event) {
     await getWikiID(event.target.dataset.nav)
       .then(async result => {
-        console.log(result.query.search[0]);
-        await getWikiDetail(result.query.search[0].pageid)
+        // console.log(result.query.search[0]);
+        return await getWikiDetail(result.query.search[0].pageid)
       })
       .then(result => setFurtherInfoBox(result.query.pages[0].extract))
     document.body.dataset.shown = 'true'
@@ -68,7 +69,11 @@ const Timeline = forwardRef(({imgList}, tlref)=>{
   }
 
   function handleLogoClick(event) {
-    
+    console.log('clicked')
+    setBigBang(1)
+    setTimeout(() => {
+      setBigBang(2)
+    }, 5100);
   }
 
 const width = 430
@@ -77,13 +82,15 @@ const width = 430
 
 
   return (<>
-    <div id="splash"><div id="page-title">Life/Time</div>
-    <img id='logo' src="/logo.png" onClick={handleLogoClick}></img>
-      <span style={{ color: '#ffb700' }}>Click the logo to trigger the Big Bang</span>
-    </div>
+    {bigBang < 2 && <div id="splash" style={bigBang > 0 ? {animationName: 'hide'} : {animationName: 'none'}}>
+      {bigBang < 1 && <><div id="page-title">Life/Time</div>
+      <img id='logo' src="/logo.png" onClick={handleLogoClick} draggable='false'></img></>}
+      {bigBang === 1 && <div id="singularity"></div>}
+      {bigBang < 1 && <span style={{ color: '#ffb700' }}>Click the logo to trigger the Big Bang</span>}
+    </div>}
 
     <main>
-    <h1>History of the Universe</h1>
+      <h1 style={{ marginLeft: '3rem', fontSize: '5rem' }}>History of the Universe</h1>
     {counter >= 1000000000 && <div><h2 id="time-counter">{counter.toLocaleString('en-GB')} years since Big Bang</h2></div>}
     {imgList.length > 0 && <>
         <div style={{width: compound_width+'vw', top: '7.5vh', left: '100vw', position: 'relative'}}>
@@ -93,10 +100,18 @@ const width = 430
       </div>
 
       <div id="wholeTL" style={{ width: fullwidth + 'vw' }}>
-        <div className="buffer bigbang"></div>
+          <div className="buffer">
+           <div id='bigbangimgbox' className='tl-imagebox' key={imgList[0].id}>
+              <div className="tl-image-and-tag">
+              <img id='bigbangimg' className="tl-image" src={imgList[0].picture} title={imgList[0].alt} alt={imgList[0].alt} draggable='false' data-nav={imgList[0].alt} onClick={handleImageClick}></img>
+            <div className="tl-imagetag">{imgList[0].alt}</div>
+                </div>
+            </div>
+          </div>
+
         <div id="uni" className='timeline' style={{ width: compound_width+'vw' }} ref={tlref}>
 
-          {imgList.map(image =>
+          {imgList.map(image => image.id > 0 && image.id < imgList.length-2 &&
             <div className='tl-imagebox' key={image.id} style={{ left: image.timeline + '%', width: image.constraint }}>
               <div className="tl-image-and-tag">
               <img className="tl-image" src={image.picture} title={image.alt} alt={image.alt} draggable='false' data-nav={image.alt} onClick={handleImageClick}></img>

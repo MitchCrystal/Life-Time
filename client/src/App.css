@@ -3,7 +3,7 @@ body {
   background-color: rgb(9, 0, 65);
   height: 95vh;
   width: 100vw;
-  color: white;
+  color: #ffb700;
   margin: 0;
   /* this overflow-hidden can be used without breaking sticky */
   /* overflow: hidden; */
@@ -16,8 +16,8 @@ body {
   position: fixed;
   right: 5%;
   top: 5%;
-  color: white;
-  font-size: 1.7rem;
+  color: #ffb700;
+  font-size: 3rem;
   animation: fadeIn 5s;
   margin: 0;
 }
@@ -31,6 +31,8 @@ body {
 
 .buffer {
   min-width: 100vw;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -86,6 +88,12 @@ background-image: linear-gradient(265deg,
   object-position: center; */
 }
 
+#bigbangimgbox {
+  justify-content: center;
+  top: 1vh;
+  width: 60vw;
+}
+
 .tl-image-and-tag:hover, button:hover {
   transform: scale(1.04);
 }
@@ -112,6 +120,10 @@ background-image: linear-gradient(265deg,
   object-fit: cover;
   object-position: center;
   height: 50vh;
+ }
+
+ #bigbangimg {
+  max-width: 60vw;
  }
 
 .tl-imagetag {
@@ -202,10 +214,6 @@ background-image: linear-gradient(265deg,
 }
 
 
-.bigbang {
-/* NEED TO DO SOMETHING WITH THIS!!!! */
-}
-
 @keyframes fadeIn {
   0% {opacity: 0;}
   100% { opacity: 1; }
@@ -283,14 +291,14 @@ button {
 }
 
 span {
-  /* font-weight: bolder; */
+  font-weight: bolder;
   font-size: 2rem;
-  /* transform: translateY(500%); */
+  margin-top: 1rem;
 }
 
-/* #splash {
+#splash {
   z-index: 999;
-  opacity: 0.5;
+  /* opacity: 0.5; */
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -301,6 +309,9 @@ span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation-timing-function: ease;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
 }
 
 #page-title {
@@ -314,10 +325,11 @@ span {
   height: 10vmin;
   width: 10vmin;
   margin: 6vmin;
+  cursor: pointer;
 
 }
 
-#logo:hover {
+#logo:hover:not(:active) {
   animation-name: shake;
   animation-timing-function: ease;
   animation-duration: 0.05s;
@@ -326,21 +338,45 @@ span {
 }
 
 @keyframes shake {
-
 0% { transform: translate(0px,0px);}
-
 20% { transform: translate(10px, 10px);}
-
 40% {transform: translate(0px, 0px);}
-
 60% {transform: translate(10px, -10px);}
-
 80% {  transform: translate(0px, 0px);}
-
 100% { transform: translate(-10px, -10px); }
-
 }
 
 #logo:active {
-  transform: scale(0.96);
-} */
+  transform: scale(0.6);
+}
+
+@keyframes explode {
+  0% {transform: scale(1);}
+
+  10% { transform: scale(100);}
+  /* 10% { transform: scale(100);} */
+  50% { transform: scale(100); opacity: 1;}
+
+  100% { opacity: 0}
+}
+
+@keyframes hide {
+  0% {opacity: 1;}
+  100% { opacity: 0 }
+}
+
+#singularity {
+  z-index: 99999;
+  position: absolute;
+  left: 50vw;
+  border-radius: 50%;
+  width: 4vw;
+  height: 4vh;
+  animation-name: explode;
+  animation-timing-function: ease;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  background: rgb(255, 183, 0);
+  background: radial-gradient(circle, rgba(255, 183, 0, 1) 0%, rgba(255, 255, 255, 1) 49%, rgba(255, 255, 255, 1) 100%);
+
+}

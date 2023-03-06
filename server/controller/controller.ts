@@ -8,7 +8,7 @@ export async function getImages(ctx: Koa.Context) {
     //console.log('controller accessed')
     const imgs = await fs.readdir(imageFolder)
 
-    const imgs2 = [{ id: 0, picture: '01-bigbang.avif', timeline: 0.0000, alt: "Beginning of the Universe", constraint: '40vw' },
+    const imgs2 = [{ id: 0, picture: '01-bigbang.avif', timeline: 0.0000, alt: "Big Bang", constraint: '40vw' },
   { id: 1, picture: '02-atomform.webp', timeline: 0.0022, alt: "First Atoms", constraint: '40vw' },
   { id: 2, picture: '03-starform.webp', timeline: 0.7246, alt: "First Stars", constraint: '130vw' },
   { id: 3, picture: '04-1066px-Andromeda_Galaxy.jpg', timeline: 2.8986, alt: "First Galaxies Form", constraint: '345vw' },
