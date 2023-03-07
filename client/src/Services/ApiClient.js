@@ -4,7 +4,7 @@ const wikiUrlForDetail = `https://en.wikipedia.org/w/api.php?action=query&format
 const detailSuffix = `&formatversion=2&exchars=600&explaintext=1`
 
 export async function getImageList() {
-  const result = await fetch(baseURI+'/images')
+  const result = await fetch(baseURI + '/images')
   return result.json()
 }
 

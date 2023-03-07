@@ -1,0 +1,68 @@
+[
+  { "atoms": "It took 300,000 years to form proper atoms",
+    "assignTo": 1 },
+  {
+    "stars": "Stars didn't form for about a 100 million years, but even this is tiny on the timescale of the universe",
+    "assignTo": 2
+  },
+  {
+    "galaxies": "Stars started to attract each other and clump in to the first galaxies after another 300 million years",
+    "assignTo": 3
+  },
+  {
+    "milkyway": "The Milky Way is likely older than it is placed on this timeline.",
+    "assignTo": 3
+  },
+  {
+    "milkyway2": "Astronomers are finding evidence that it potentually contains some of the first stars in the universe.",
+    "assignTo": 4
+  },
+  {
+    "milkyway3": "Seeing as it contains up to 400 billion stars there are plenty more to be researched!",
+    "assignTo": 4
+  },
+  {
+    "sunLikeStars": "Stars similar to the Sun first appeared after 3.8 billion years.",
+    "assignTo": 5
+  },
+  {
+    "sunlikeStars2": "They are distinct because they are metal-rich compared to older type stars.",
+    "assignTo": 5
+  },
+  {
+    "sunLikeStars3": "These type of stars are called 'Population 1' stars and are the 'youngest' type of stars in the universe.",
+    "assignTo": 5
+  },
+  {
+    "sunLikeStars4": "The Sun itself didn't appear for another 5.5 billion years",
+    "assignTo": 5
+  },
+  {
+    "sunLikeStars5": "This section of the timeline may seem empyty of major events but that doesn't mean nothing was happening!",
+    "assignTo": 5
+  },
+  {
+    "moon": "Theories suggest that the moon was formed when an object called Theia (similar in size to Mars) hit the Earth. The debris then collected to eventually form the Moon.",
+    "assignTo": 7
+  },
+  {
+    "self-replicating": "RNA is a molecule that can create copies of itself and is a pre-cursor to DNA. It has been found to spontaneously appear under similar conditions to early Earth.",
+    "assignTo": 9
+  },
+  {
+    "photosynthesis": "Photosynthesis is a process that uses light to generate chemical energy. A by-product of this is oxygen which wasn't available in large quantities at this time.",
+    "assignTo": 11
+  },
+  {
+    "oxygen": "Around this time the oxygen in the atmosphere massively increased, a beginning to the conditions that sustain the mmajority of life today.",
+    "assignTo": 12
+  },
+  {
+    "eukaryotes": "Most lifeforms outside of bacteria have cells with a nucleus.",
+    "assignTo": 13
+  },
+  {
+    "eukaryotes2": "From this point on in the timeline the number of key events in life exponentially increases!",
+    "assignTo": 13
+  }
+]
