@@ -21,7 +21,13 @@
     "timeline": 0.7246,
     "alt": "First Stars",
     "wiki": "Star",
-    "constraint": "130vw"
+    "constraint": "130vw",
+    "comments": [
+      {
+        "position": 45,
+        "text": "Stars didn't form for about a 100 million years, but even this is tiny on the timescale of the universe"
+      }
+    ]
   },
   {
     "id": 3,
@@ -29,7 +35,11 @@
     "timeline": 2.8986,
     "alt": "First Galaxies Form",
     "wiki": "Galaxy",
-    "constraint": "345vw"
+    "constraint": "345vw",
+    "comments": [{
+        "position": 125,
+        "text": "Stars started to attract each other and clump in to the first galaxies after another 300 million years"
+      }]
   },
   {
     "id": 4,
@@ -37,7 +47,21 @@
     "timeline": 8.6957,
     "alt": "Milky Way Forms",
     "wiki": "Milky Way",
-    "constraint": "700vw"
+    "constraint": "700vw",
+    "comments": [
+      {
+        "position": 45,
+        "text": "The Milky Way is likely older than it is placed on this timeline."
+      },
+      {
+        "position": 220,
+        "text": "Astronomers are finding evidence that it potentially contains some of the first stars in the universe."
+      },
+      {
+        "position": 420,
+        "text": "Seeing as it contains up to 400 billion stars there are plenty more to be researched!"
+      }
+    ]
   },
   {
     "id": 5,
@@ -45,13 +69,40 @@
     "timeline": 27.5362,
     "alt": "First Sun-like Stars Form",
     "wiki": "Sun",
-    "constraint": "700vw"
+    "constraint": "700vw",
+    "comments": [
+      {
+        "position": 145,
+        "text": "Stars similar to the Sun first appeared after 3.8 billion years."
+      },
+      {
+        "position": 320,
+        "text": "They are distinct because they are much richer in metals compared to the first stars."
+      },
+      {
+        "position": 520,
+        "text": "These type of stars are called 'Population 1' stars and are the 'youngest' type of stars in the universe."
+      },
+      {"position": 730, "text": "The Sun itself didn't appear for another 5.5 billion years..." },
+      {
+        "position": 1180,
+        "text": "This section of the timeline may seem empty of major events but that doesn't mean nothing was happening!"
+      },
+           {
+             "position": 1480,
+             "text": "Yes, this is still scrolling....it really is just a very long time to cover! Remember: you can click on any image for more information"
+           },
+           {
+             "position": 1930,
+             "text": "Nearly at the next milestone... the birth of the Sun and the Solar System!"
+           }
+    ]
   },
   {
     "id": 6,
     "picture": "07-solarsystem.png",
     "timeline": 66.6667,
-    "alt": "Sun and Solar System Forms",
+    "alt": "The Sun and Solar System Form",
     "wiki": "Solar System",
     "constraint": "40vw"
   },
@@ -61,7 +112,13 @@
     "timeline": 67.3913,
     "alt": "Formation of the Moon",
     "wiki": "Moon",
-    "constraint": "200vw"
+    "constraint": "200vw",
+    "comments": [
+      {
+        "position": 45,
+        "text": "Theories suggest that the moon was formed when an object called Theia (similar in size to Mars) hit the Earth. The debris then collected to eventually form the Moon."
+      }
+    ]
   },
   {
     "id": 8,
@@ -77,7 +134,13 @@
     "timeline": 71.7391,
     "alt": "Self-Replicating Molecules",
     "wiki": "rna",
-    "constraint": "180vw"
+    "constraint": "180vw",
+    "comments": [
+      {
+        "position": 45,
+        "text": "RNA is a molecule that can create copies of itself and is a pre-cursor to DNA. It has been found to spontaneously appear under similar conditions to early Earth."
+      }
+    ]
   },
 
   {
@@ -94,7 +157,13 @@
     "timeline": 75.3623,
     "alt": "Photosynthesis Develops",
     "wiki": "Photosynthesis",
-    "constraint": "300vw"
+    "constraint": "300vw",
+    "comments": [
+      {
+        "position": 45,
+        "text": "Photosynthesis is a process that uses light to generate chemical energy. A by-product of this is oxygen which wasn't available in large quantities at this time."
+      }
+    ]
   },
   {
     "id": 12,
@@ -102,7 +171,13 @@
     "timeline": 82.6087,
     "alt": "Oxygen in Atmosphere",
     "wiki": "atmosphere",
-    "constraint": "230vw"
+    "constraint": "230vw",
+    "comments": [
+      {
+        "position": 45,
+        "text": "Around this time the oxygen in the atmosphere massively increased, a beginning to the conditions that sustain the mmajority of life today."
+      }
+    ]
   },
   {
     "id": 13,
@@ -110,7 +185,17 @@
     "timeline": 86.9565,
     "alt": "First Cells with a Nucleus",
     "wiki": "eukaryote",
-    "constraint": "430vw"
+    "constraint": "430vw",
+    "comments": [
+      {
+        "position": 45,
+        "text": "Most lifeforms outside of bacteria have cells with a nucleus, this was an important step towards life visible to the human eye"
+      },
+      {
+        "position": 230,
+        "text": "From this point on in the timeline the number of key events in the history of life increases dramatically!"
+      }
+    ]
   },
   {
     "id": 14,

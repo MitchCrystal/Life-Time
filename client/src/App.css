@@ -160,11 +160,17 @@ body {
   position: absolute;
 }
 
+#bigbangimgbox{
+margin-top: 5vh;
+}
+
 #bigbangimgbox, .endimgbox {
   position: static;
   flex-direction: column;
-  margin-top: 5vh;
+  /* margin-top: 5vh; */
   height: 50vh;
+  justify-content: center;
+  align-items: center;
 
 }
 
@@ -178,6 +184,7 @@ body {
 
 .tl-image-and-tag {
   cursor: pointer;
+  z-index: 2;
   overflow: hidden;
   transition-timing-function: ease;
   transition-duration: 400ms;
@@ -376,19 +383,20 @@ transform: translateY(-130%);
 
 h3 {
   color:#ffb700;
-  font-size: 4rem;
+  font-size: 3rem;
   position: absolute;
   left: 3%;
   padding: 15px 30px;
+  width: 734px;
 }
 
 button {
   position: absolute;
-  top: 40px;
-  right: 40px;
-  height: 4rem;
-  width: 18rem;
-  font-size: 1.5rem;
+  top: 70px;
+  right: 90px;
+  height: 3.5rem;
+  width: 16rem;
+  font-size: 1.4rem;
   color: rgb(9, 0, 65);
   font-weight: bold;
   background-color: #ffb700;
@@ -437,8 +445,19 @@ p {
   font-size: 1.5rem;
 }
 
+.comment-holder {
+  position: absolute;
+  width: 120vw;
+  top: 30%;
+}
+
 .comment {
   position: sticky;
-  left: 0;
-  align-self: flex-start;
+  max-width: 30vw;
+  padding: 2rem;
+  font-size: 1.5rem;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+
 }

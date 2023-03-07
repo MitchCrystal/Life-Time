@@ -3,7 +3,7 @@
 import React, { useState, forwardRef, useEffect } from "react"
 import { getWikiDetail, getWikiID } from "../Services/ApiClient"
 import segmentsArr from '../universeTLsections.json'
-import comments from '../timelinenotes.json'
+
 
 //export default function Timeline({ imgList }) {
 const Timeline = forwardRef(({ imgList, setFurtherInfoShown, furtherInfoShown }, tlref) => {
@@ -84,7 +84,7 @@ const Timeline = forwardRef(({ imgList, setFurtherInfoShown, furtherInfoShown },
               {/*SHOULD TRY AND CLEAN UP FIRST IMAGE JSX STRUCTURE*/}
               {/*PUT A MINI DESCRIPTION HERE FOR HOW THE TIMELINE WORKS*/}
               <div id='bigbangimgbox' className='tl-imagebox' key={imgList[0].id} style={{ width: imgList[0].constraint }}>
-                <div className="tl-image-and-tag">
+                <div className="tl-image-and-tag" style={{alignSelf:"center"}}>
                   <img id='bigbangimg' className="tl-image" src={imageURL+imgList[0].picture} title={imgList[0].alt} alt={imgList[0].alt} draggable='false' data-nav={imgList[0].id} onClick={handleImageClick}></img>
                   <div id="intro">
                     <span style={{ fontSize: "1.5rem" }}>The Big Bang occurred 13.8 BILLION years ago.</span><br></br><br></br> That's a difficult length of time to visualise but this timeline is designed to help.<br></br><br></br>
@@ -109,13 +109,17 @@ const Timeline = forwardRef(({ imgList, setFurtherInfoShown, furtherInfoShown },
                     <img className="tl-image" src={imageURL+image.picture} title={image.alt} alt={image.alt} draggable='false' data-nav={image.id} onClick={handleImageClick}></img>
                     <div className="tl-imagetag">{image.alt}</div>
                   </div>
+                  {image.comments && image.comments.map((comment, index) =><div key={index} className='comment-holder' style={{ left: comment.position + 'vw' }}>
+                    <div className="comment" style={{ left: '45vw'}}>{comment.text}</div></div>)}
+
+
                 </div>)}
             </div>
 
             <div className="buffer">
               <div style={{ width: '5vw' }} ></div>
-              <div style={{ width: '20vw', marginTop: '5vh' }}><p>The final two events on the right are so recent that
-                they don't even appear on the timeline even though they are thousands of years ago because their timescale is so tiny!</p></div>
+              <div style={{ width: '20vw', marginTop: '5vh' }}><p style={{fontWeight:"700", marginRight: "0", paddingTop: "20px"}}>The final events on the right are so recent that
+                they can't even fit on the timeline, despite being thousands of years ago, because their timescale is so tiny!</p></div>
               {imgList.map(image => image.id >= imgList.length - 2 &&
                 <div className='tl-imagebox endimgbox' key={image.id} style={{ width: image.constraint }}>
                   <div className="tl-image-and-tag">
