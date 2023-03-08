@@ -4,7 +4,7 @@ import {format} from 'date-fns'
 export default function CreateTL({setCustTL, custTL}) {
 
   const [endDate, setEndDate] = useState(format(Date.now(), 'yyyy-MM-dd'))
-  const [startDate, setStartDate] = useState('1982-08-21'); //need to tweak this
+  const [startDate, setStartDate] = useState('1970-01-01'); //need to tweak this
   const [tlLength, setTLLength] = useState('years');
   const [tlType, setTLType] = useState('custom');
 
@@ -15,7 +15,7 @@ export default function CreateTL({setCustTL, custTL}) {
   const myYears = endDateYear-startDateYear
   const yearsList = Math.ceil(myYears);
 
-  // let units = 's'
+
   // const types = ['individual', 'h_history', 'life', 'universe']
   // const unit_types = ['years', 'centuries', 'millions', 'billions']
 

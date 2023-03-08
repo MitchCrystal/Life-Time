@@ -146,9 +146,6 @@ body {
       hsl(284deg 56% 42%) 85%,
       hsl(290deg 99% 37%) 100%);
   flex-shrink: 0;
-  /* items for potential mobile */
-  /* flex-direction: column;
-  align-items: center; */
 }
 
 .tl-imagebox {
@@ -156,7 +153,6 @@ body {
   max-height: 50vh;
   width: 100vw;
   font-weight: bolder;
-  /* needed for positioning based on specific times */
   position: absolute;
 }
 
@@ -247,7 +243,6 @@ margin-top: 5vh;
   bottom: 1vh;
   pointer-events: none;
   padding: 7px 2px;
-  /* TODO: DO I WANT THIS */
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   backdrop-filter: blur(10px);
@@ -280,9 +275,6 @@ margin-top: 5vh;
 #minimap-range {
   background-color: transparent;
   opacity: 0.4;
-  /* CHANGED */
-  /* outline: green 3px solid; */
-  /* CHANGED */
   transition: opacity .2s;
   margin: 0;
   padding: 0;

@@ -20,8 +20,9 @@ const imageSchema = new mongoose.Schema({
   comments: [commentSchema]
 });
 
-export const imageModel = mongoose.model('universeimages', imageSchema);
+const imageModel = mongoose.model('universeimages', imageSchema);
 
 
 mgConnnect();
 
+export = imageModel

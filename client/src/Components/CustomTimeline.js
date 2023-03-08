@@ -2,7 +2,7 @@ import React, {useState} from "react"
 
 export default function CustomTimeline({custTL, setCustTL}) {
 
-    // console.log('mycusttl', custTL)
+ 
 const width = 200
   const compound_width = width * 5//custTL.arrayTL.length
  // const checkArr = custTL.arrayTL || []

@@ -3,11 +3,11 @@ import './App.css';
 import * as ApiClient from './Services/ApiClient';
 import useMousePosition from './Hooks/useMousePosition';
 import Timeline from './Components/Timeline';
-import CreateTL from './Components/CreateTL';
+//import CreateTL from './Components/CreateTL';
 
 function App() {
 
-  const [custTL, setCustTL] = useState({});
+ // const [custTL, setCustTL] = useState({});
   const [imgList, setImageList] = useState([]);
   const [position, setPosition] = useState(0);
   const [miniMapScroll, setMiniMapScroll] = useState('0%');
@@ -17,7 +17,7 @@ function App() {
   const locateMouse = useMousePosition()
   const leftRightEdge = locateMouse.x / window.innerWidth * 100
   const topBottomEdge = locateMouse.y / window.innerHeight * 100
-console.log(!furtherInfoShown)
+
   if (leftRightEdge < 10 && topBottomEdge < 75 && topBottomEdge > 15 && !furtherInfoShown && bigBang===2) {
     window.scrollTo({top:0, left: window.scrollX - (window.innerWidth/200)})
   }

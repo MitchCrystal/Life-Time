@@ -1,14 +1,15 @@
 'use strict'
 
-const model = require('./index');
+import imageModel from './index';
 
 export async function getDBImageList() {
   try {
-    const result = await model.find();
+    const result = await imageModel.find();
     return result;
   }
   catch (err) {
     console.log(err)
   }
 };
+
 

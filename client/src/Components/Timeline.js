@@ -15,6 +15,10 @@ const Timeline = forwardRef(({ imgList, setFurtherInfoShown, furtherInfoShown, b
   const imageURL = "http://127.0.0.1:4500/"
 
 
+// const years = 13.8 //this will be customisable for later
+// console.log(Math.round(years%1*10)/10)
+
+
   useEffect(() => {
     function handlePageScroll(event) {
       let currentScroll = window.scrollX / (document.body.scrollWidth - window.innerWidth)
