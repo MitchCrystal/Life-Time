@@ -50,17 +50,21 @@
     "constraint": "700vw",
     "comments": [
       {
-        "position": 45,
+        "position": 200,
         "text": "The Milky Way is likely older than it is placed on this timeline."
       },
       {
-        "position": 220,
+        "position": 420,
         "text": "Astronomers are finding evidence that it potentially contains some of the first stars in the universe."
       },
       {
-        "position": 420,
+        "position": 620,
         "text": "Seeing as it contains up to 400 billion stars there are plenty more to be researched!"
-      }
+      },
+        {
+          "position": 820,
+          "text": "It took a VERY long time between the Milky Way forming and us getting to the next major event"
+        }
     ]
   },
   {

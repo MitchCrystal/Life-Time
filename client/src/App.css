@@ -1,6 +1,6 @@
 
 body {
-  background-color: rgb(9, 0, 65);
+  background-color: #090041;
   height: 95vh;
   width: 100vw;
   color: #ffb700;
@@ -13,7 +13,7 @@ body {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(9, 0, 65);
+  background-color: #090041;
   left: 0;
   top: 0;
   display: flex;
@@ -146,7 +146,7 @@ body {
       hsl(284deg 56% 42%) 85%,
       hsl(290deg 99% 37%) 100%);
   flex-shrink: 0;
-  /* items for mobile */
+  /* items for potential mobile */
   /* flex-direction: column;
   align-items: center; */
 }
@@ -167,7 +167,6 @@ margin-top: 5vh;
 #bigbangimgbox, .endimgbox {
   position: static;
   flex-direction: column;
-  /* margin-top: 5vh; */
   height: 50vh;
   justify-content: center;
   align-items: center;
@@ -266,13 +265,13 @@ margin-top: 5vh;
 
 #minimap {
   background: rgba(254, 213, 70, .1) -moz-element(#wholeTL) no-repeat;
-  background-size: 300%;
+  background-size: 400%;
   background-position: 0%;
   background-attachment: scroll;
   position: fixed;
-  min-width: 80vw;
+  min-width: 70vw;
   height: auto;
-  left: 10%;
+  left: 14%;
   bottom: 10%;
   display: block;
 
@@ -401,6 +400,8 @@ button {
   font-weight: bold;
   background-color: #ffb700;
   border: none;
+  transition-timing-function: ease;
+    transition-duration: 400ms;
 }
 
 

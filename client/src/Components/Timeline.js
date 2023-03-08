@@ -1,20 +1,19 @@
 
-// import useMousePosition from "../Hooks/useMousePosition"
 import React, { useState, forwardRef, useEffect } from "react"
 import { getWikiDetail, getWikiID } from "../Services/ApiClient"
 import segmentsArr from '../universeTLsections.json'
 
 
-//export default function Timeline({ imgList }) {
-const Timeline = forwardRef(({ imgList, setFurtherInfoShown, furtherInfoShown }, tlref) => {
-  // const locateMouse = useMousePosition()
+const Timeline = forwardRef(({ imgList, setFurtherInfoShown, furtherInfoShown, bigBang, setBigBang }, tlref) => {
+
   const [counter, setCounter] = useState(0);
   const [furtherInfoBox, setFurtherInfoBox] = useState('');
-  const [bigBang, setBigBang] = useState(0);
+
   const [wikiLink, setWikiLink] = useState('');
   const [furtherInfoTitle, setFurtherInfoTitle] = useState('');
   const [furtherInfoPic, setFurtherInfoPic] = useState('');
   const imageURL = "http://127.0.0.1:4500/"
+
 
   useEffect(() => {
     function handlePageScroll(event) {
@@ -43,6 +42,10 @@ const Timeline = forwardRef(({ imgList, setFurtherInfoShown, furtherInfoShown },
   function handleButtonClick(event) {
     setFurtherInfoShown(false);
   };
+
+  function handleBackToStartClick() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+   }
 
   function handleLogoClick(event) {
     setBigBang(1);
@@ -76,19 +79,17 @@ const Timeline = forwardRef(({ imgList, setFurtherInfoShown, furtherInfoShown },
       </div>
 
       <main className={furtherInfoShown === true ? 'hidden' : 'shown'}>
-        <h1 style={{ marginLeft: '3rem', fontSize: '3rem', marginBottom: '0' }}>History of the Universe</h1>
+        <h1 style={{ marginLeft: '29rem', fontSize: '3rem', marginBottom: '0' }}>The History of the Universe</h1>
         {imgList.length > 0 &&
           <>
           <div id="wholeTL" style={{ width: fullwidth + 'vw' }}>
             <div className="buffer">
-              {/*SHOULD TRY AND CLEAN UP FIRST IMAGE JSX STRUCTURE*/}
-              {/*PUT A MINI DESCRIPTION HERE FOR HOW THE TIMELINE WORKS*/}
               <div id='bigbangimgbox' className='tl-imagebox' key={imgList[0].id} style={{ width: imgList[0].constraint }}>
                 <div className="tl-image-and-tag" style={{alignSelf:"center"}}>
                   <img id='bigbangimg' className="tl-image" src={imageURL+imgList[0].picture} title={imgList[0].alt} alt={imgList[0].alt} draggable='false' data-nav={imgList[0].id} onClick={handleImageClick}></img>
                   <div id="intro">
                     <span style={{ fontSize: "1.5rem" }}>The Big Bang occurred 13.8 BILLION years ago.</span><br></br><br></br> That's a difficult length of time to visualise but this timeline is designed to help.<br></br><br></br>
-                    Use your arrow keys or the visual scrollbar below to navigate<br></br> and click any image for more information.
+                    Use your arrow keys or the visual scrollbar below to navigate<br></br> and click any image (including this one) for more information.
                   </div>
 
                 </div>
@@ -118,16 +119,23 @@ const Timeline = forwardRef(({ imgList, setFurtherInfoShown, furtherInfoShown },
 
             <div className="buffer">
               <div style={{ width: '5vw' }} ></div>
-              <div style={{ width: '20vw', marginTop: '5vh' }}><p style={{fontWeight:"700", marginRight: "0", paddingTop: "20px"}}>The final events on the right are so recent that
-                they can't even fit on the timeline, despite being thousands of years ago, because their timescale is so tiny!</p></div>
               {imgList.map(image => image.id >= imgList.length - 2 &&
                 <div className='tl-imagebox endimgbox' key={image.id} style={{ width: image.constraint }}>
                   <div className="tl-image-and-tag">
                     <img className="tl-image endimg" src={imageURL+image.picture} title={image.alt} alt={image.alt} draggable='false' data-nav={image.id} onClick={handleImageClick}></img>
                     <div className="tl-imagetag">{image.alt}</div>
                   </div>
-                  {/*PUT A MINI DESCRIPTION HERE FOR THE LAST TWO EVENTS*/}
+                  <div style={{ position: "absolute", height: "10vh", width: "17vw", left: "6049vw", top: "45vh" }}>
+                    The first modern humans appeared around 200,000 years ago, which is less than a pixel on this scale!</div>
+                  <div style={{ position: "absolute", height: "10vh", width: "20vw", left: "6074vw", top: "45vh" }}>
+                    Stonehenge was built around 5000 years ago, about the same time as the first Egyptian pyramids.</div>
                 </div>)}
+
+              <div style={{ width: '20vw', marginTop: '5vh' }}><p style={{fontWeight:"700", marginRight: "0", paddingTop: "20px"}}>These two final events are so recent that
+                they can't even fit on the timeline, despite being thousands of years ago, because their timescale is so tiny!</p></div>
+
+              <button onClick={handleBackToStartClick} style={{ position: "absolute", height: "8vh",fontSize:"1rem", textAlign:"center", cursor:"pointer", width: "13vw", left: "6102vw", top: "45vh", backgroundColor: "#ffb700", color: "#090041", paddingLeft:"20px", paddingRight:"20px"}}>
+                  Click here to go back to the start</button>
               <div style={{ width: '5vw' }} ></div>
             </div>
           </div>

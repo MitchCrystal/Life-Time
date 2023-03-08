@@ -8,8 +8,13 @@ export async function getImageList() {
   return result.json()
 }
 
+export async function getSections() {
+  const result = await fetch(baseURI + '/sections')
+  return result.json()
+}
+
 export async function getWikiID(wikiIDsearch) {
-  const result = await fetch(wikiUrlForID+wikiIDsearch)
+  const result = await fetch(/*baseURI + '/wiki/article:/'+wikiIDsearch*/wikiUrlForID+wikiIDsearch)
    return result.json()
 }
 
