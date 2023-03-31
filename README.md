@@ -6,8 +6,8 @@ Life/Time is a timeline visualiser that allows user to view key events throughou
 
 The timeline is best viewed with Firefox as this supports 'element as an image' for the mini-map timeline.
 
-<img width="1919" alt="Screenshot 2023-03-31 155913" src="https://user-images.githubusercontent.com/116960814/229199161-1658499e-c199-4e97-9b86-ba4261387c3b.png">
-<img width="1916" alt="Screenshot 2023-03-31 155935" src="https://user-images.githubusercontent.com/116960814/229199175-c3247170-eed4-44af-92bb-f7c0cb7aee11.png">
+<img width="919" alt="Screenshot 2023-03-31 155913" src="https://user-images.githubusercontent.com/116960814/229199161-1658499e-c199-4e97-9b86-ba4261387c3b.png">
+<img width="916" alt="Screenshot 2023-03-31 155935" src="https://user-images.githubusercontent.com/116960814/229199175-c3247170-eed4-44af-92bb-f7c0cb7aee11.png">
 
 
 ## Tech Stack
