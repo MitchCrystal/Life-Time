@@ -1,4 +1,4 @@
-![](file:///C:/Users/chris/AppData/Roaming/marktext/images/2023-03-31-15-54-16-image.png?msec=1680274463086)
+<img width="454" alt="Screenshot 2023-03-31 155400" src="https://user-images.githubusercontent.com/116960814/229199227-8c6e952b-bcb5-4287-857d-49cde3901e48.png">
 
 # Life/Time
 
@@ -6,9 +6,9 @@ Life/Time is a timeline visualiser that allows user to view key events throughou
 
 The timeline is best viewed with Firefox as this supports 'element as an image' for the mini-map timeline.
 
-![](file:///C:/Users/chris/AppData/Roaming/marktext/images/2023-03-31-16-00-27-Screenshot%202023-03-31%20155913.png?msec=1680274832616)
+<img width="1919" alt="Screenshot 2023-03-31 155913" src="https://user-images.githubusercontent.com/116960814/229199161-1658499e-c199-4e97-9b86-ba4261387c3b.png">
+<img width="1916" alt="Screenshot 2023-03-31 155935" src="https://user-images.githubusercontent.com/116960814/229199175-c3247170-eed4-44af-92bb-f7c0cb7aee11.png">
 
-![](file:///C:/Users/chris/AppData/Roaming/marktext/images/2023-03-31-15-59-48-image.png?msec=1680274792558)
 
 ## Tech Stack
 
@@ -21,7 +21,7 @@ The timeline is best viewed with Firefox as this supports 'element as an image' 
 
 ## Getting started locally
 
-- From `/` run `npm run install-all-deps` to install all dependecies
+- From `/` run `npm run install-all-deps` to install all dependencies
   
 - Start: From `/` run dev environment: `npm run dev`
   
