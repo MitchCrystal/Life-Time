@@ -20,7 +20,6 @@ The timeline is best viewed with Firefox as this supports 'element as an image' 
 - Koa (with Typescript): A next generation web framework for Node.js
 - Mongoose: A MongoDB object modeling tool designed to work in an asynchronous environment
 - MongoDB: A document-oriented NoSQL database used for high volume data storage
-- Dotenv: A zero-dependency module that loads environment variables from a .env file
 
 ## Getting started locally
 
