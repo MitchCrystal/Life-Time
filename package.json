@@ -1,6 +1,16 @@
 {
+  "scripts": {
+    "server-install": "cd server && npm i",
+    "client-install": "cd client && npm i",
+    "install-all-deps": "concurrently \"npm i\" \"npm run server-install\" \"npm run client-install\"",
+    "server-dev": "cd server && nodemon index.ts",
+    "client-dev": "cd client && npm run start",
+    "dev": "concurrently \"npm run server-dev\" \"npm run client-dev\"",
+    "seed": "cd server && npx ts-node seed.ts"
+  },
   "devDependencies": {
     "eslint": "^8.35.0",
-    "eslint-plugin-react": "^7.32.2"
+    "eslint-plugin-react": "^7.32.2",
+    "concurrently": "^8.0.1"
   }
 }

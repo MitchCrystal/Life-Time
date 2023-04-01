@@ -70,7 +70,7 @@ const Timeline = forwardRef(({ imgList, setFurtherInfoShown, furtherInfoShown, b
           {bigBang < 1 &&
             <>
               <div id="page-title">Life/Time</div>
-              <img id='logo' src="/logo.png" onClick={handleLogoClick} draggable='false'></img>
+              <img id='logo' src="/logo.png" onClick={handleLogoClick} draggable='false' alt="Life Time logo"></img>
             </>}
           {bigBang === 1 &&
             <div id="singularity"></div>}
@@ -83,13 +83,13 @@ const Timeline = forwardRef(({ imgList, setFurtherInfoShown, furtherInfoShown, b
       </div>
 
       <main className={furtherInfoShown === true ? 'hidden' : 'shown'}>
-        <h1 style={{ marginLeft: '29rem', fontSize: '3rem', marginBottom: '0' }}>The History of the Universe</h1>
+        <h1 style={{ textAlign: "center", fontSize: '3rem', marginBottom: '0' }}>The History of the Universe</h1>
         {imgList.length > 0 &&
           <>
           <div id="wholeTL" style={{ width: fullwidth + 'vw' }}>
             <div className="buffer">
               <div id='bigbangimgbox' className='tl-imagebox' key={imgList[0].id} style={{ width: imgList[0].constraint }}>
-                <div className="tl-image-and-tag" style={{alignSelf:"center"}}>
+                <div id="bigbangimg-and-tag" className="tl-image-and-tag" style={{alignSelf:"center"}}>
                   <img id='bigbangimg' className="tl-image" src={imageURL+imgList[0].picture} title={imgList[0].alt} alt={imgList[0].alt} draggable='false' data-nav={imgList[0].id} onClick={handleImageClick}></img>
                   <div id="intro">
                     <span style={{ fontSize: "1.5rem" }}>The Big Bang occurred 13.8 BILLION years ago.</span><br></br><br></br> That's a difficult length of time to visualise but this timeline is designed to help.<br></br><br></br>

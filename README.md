@@ -1,6 +1,6 @@
 <p align="center">
 <img width="640" alt="Screenshot 2023-03-31 155400" data-align="center" src="https://user-images.githubusercontent.com/116960814/229199227-8c6e952b-bcb5-4287-857d-49cde3901e48.png"></p>
-  
+
 
 # Life/Time
 
@@ -24,7 +24,9 @@ The timeline is best viewed with Firefox as this supports 'element as an image' 
 ## Getting started locally
 
 - From `/` run `npm run install-all-deps` to install all dependencies
-  
+
+- From `/` run `npm run seed` to add data to database
+
 - Start: From `/` run dev environment: `npm run dev`
-  
+
 - Open localhost:3000 in your browser (preferably Firefox)

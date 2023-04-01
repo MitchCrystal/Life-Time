@@ -188,6 +188,10 @@ margin-top: 5vh;
   align-self: flex-start;
  }
 
+ #bigbangimg-and-tag{
+  position: relative;
+ }
+
  .tl-image {
   max-width: 40vw;
   object-fit: cover;
@@ -198,8 +202,8 @@ margin-top: 5vh;
 
  #bigbangimg {
   max-width: 60vw;
-  object-position:bottom ;
-  object-fit: none;
+  object-position:top ;
+  object-fit: cover;
  }
 
  #intro {
