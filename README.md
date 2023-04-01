@@ -13,7 +13,7 @@ The timeline is best viewed with Firefox as this supports 'element as an image' 
 <img width="512" alt="Screenshot 2023-03-31 155935" data-align="center" src="https://user-images.githubusercontent.com/116960814/229199175-c3247170-eed4-44af-92bb-f7c0cb7aee11.png"></p>
 
 
-##Tech Stack
+## Tech Stack
 
 - React: A JavaScript library used for building user interfaces
 - NodeJS: An open-source, cross-platform JavaScript runtime environment used for server-side scripting
@@ -21,7 +21,7 @@ The timeline is best viewed with Firefox as this supports 'element as an image' 
 - Mongoose: A MongoDB object modeling tool designed to work in an asynchronous environment
 - MongoDB: A document-oriented NoSQL database used for high volume data storage
 
-##Getting started locally
+## Getting started locally
 
 - From `/` run `npm run install-all-deps` to install all dependencies
   
