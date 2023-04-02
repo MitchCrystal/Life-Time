@@ -1,12 +1,8 @@
-import Router from "koa-router";
-import { getImages, /*getWiki*/ } from "./controller/controller";
+import Router from 'koa-router';
+import { getImages } from './controller/controller';
 
-const router = new Router
+const router = new Router();
 
-router.get('/images',getImages)
+router.get('/images', getImages);
 
-// router.get('/wiki/article/:id', getWiki)
-
-// router.get('/wiki/article', getWiki)
-
-export = router
+export = router;

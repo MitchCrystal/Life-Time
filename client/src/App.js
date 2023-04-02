@@ -3,11 +3,11 @@ import './App.css';
 import * as ApiClient from './Services/ApiClient';
 import useMousePosition from './Hooks/useMousePosition';
 import Timeline from './Components/Timeline';
-//import CreateTL from './Components/CreateTL';
+
 
 function App() {
 
- // const [custTL, setCustTL] = useState({});
+
   const [imgList, setImageList] = useState([]);
   const [position, setPosition] = useState(0);
   const [miniMapScroll, setMiniMapScroll] = useState('0%');
