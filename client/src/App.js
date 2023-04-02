@@ -55,7 +55,7 @@ function App() {
 
   useEffect(() => {
     function handlePageScroll(event) {
-       setPosition(window.scrollX/document.body.scrollWidth*100)
+      setPosition(window.scrollX/document.body.scrollWidth*100)
     };
     window.addEventListener('scroll', handlePageScroll);
     return ()=>{window.removeEventListener('scroll',handlePageScroll)}
@@ -68,8 +68,10 @@ function App() {
 
       <Timeline imgList={imgList} ref={tlref} furtherInfoShown={furtherInfoShown} setFurtherInfoShown={setFurtherInfoShown} bigBang={bigBang} setBigBang={setBigBang} />
       <div id="minimap" className={furtherInfoShown === true ? 'hidden minitimeline' : 'shown minitimeline'} ref={miniMapRef} style={{ backgroundPosition: miniMapScroll }}>
+    <label htmlFor='minimap-range'></label>
         <input id="minimap-range" type="range" ref={miniMapRangeRef} value={position} max="100" onChange={handleMiniScroll}></input>
-        <div id="scrollindicator" style={position > 3 || furtherInfoShown === true ? { display: 'none' } : {display: 'block'}}>→</div>
+
+        <div id="scrollindicator" style={position > 3 || furtherInfoShown === true ? { display: 'none' } : { display: 'block' }}>→</div>
       </div>
     </div>
   );
