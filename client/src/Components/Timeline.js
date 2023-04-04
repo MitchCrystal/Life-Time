@@ -13,7 +13,7 @@ const Timeline = forwardRef(
     const [wikiLink, setWikiLink] = useState('');
     const [furtherInfoTitle, setFurtherInfoTitle] = useState('');
     const [furtherInfoPic, setFurtherInfoPic] = useState('');
-    const imageURL = 'http://127.0.0.1:4500/';
+    const imageURL = 'http://localhost:4500/';
 
     // const years = 13.8 //this will be customisable for later
     // console.log(Math.round(years%1*10)/10)
