@@ -13,7 +13,7 @@ const Timeline = forwardRef(
     const [wikiLink, setWikiLink] = useState('');
     const [furtherInfoTitle, setFurtherInfoTitle] = useState('');
     const [furtherInfoPic, setFurtherInfoPic] = useState('');
-    const imageURL = 'http://127.0.0.1:4500/';
+    
 
     // const years = 13.8 //this will be customisable for later
     // console.log(Math.round(years%1*10)/10)
@@ -135,7 +135,7 @@ const Timeline = forwardRef(
                       <img
                         id="bigbangimg"
                         className="tl-image"
-                        src={imageURL + imgList[0].picture}
+                        src={'./' + imgList[0].picture}
                         title={imgList[0].alt}
                         alt={imgList[0].alt}
                         draggable="false"
@@ -145,7 +145,14 @@ const Timeline = forwardRef(
                       <div id="intro">
                         <span style={{ fontSize: '1.5rem' }}>
                           The Big Bang occurred 13.8{' '}
-                          <span style={{ fontSize: '1.5rem', textDecoration: "wavy underline" }}>billion</span>{' '}
+                          <span
+                            style={{
+                              fontSize: '1.5rem',
+                              textDecoration: 'wavy underline',
+                            }}
+                          >
+                            billion
+                          </span>{' '}
                           years ago.
                         </span>
                         <br></br>
@@ -202,7 +209,7 @@ const Timeline = forwardRef(
                           <div className="tl-image-and-tag">
                             <img
                               className="tl-image"
-                              src={imageURL + image.picture}
+                              src={'./' + image.picture}
                               title={image.alt}
                               alt={image.alt}
                               draggable="false"
@@ -244,7 +251,7 @@ const Timeline = forwardRef(
                           <div className="tl-image-and-tag">
                             <img
                               className="tl-image endimg"
-                              src={imageURL + image.picture}
+                              src={'./' + image.picture}
                               title={image.alt}
                               alt={image.alt}
                               draggable="false"
@@ -347,7 +354,7 @@ const Timeline = forwardRef(
               <div>
                 <img
                   className="furtherinfopic"
-                  src={imageURL + furtherInfoPic}
+                  src={'./' + furtherInfoPic}
                   alt="further info"
                 ></img>
               </div>
