@@ -1,8 +1,15 @@
 'use strict'
 const mongoose = require('mongoose');
+import 'dotenv/config';
+const user = process.env.MONGO_USER;
+const password = process.env.MONGO_PASSWORD;
+const dbCluster = process.env.MONGO_CLUSTER;
+const dbName = process.env.MONGO_DB_NAME;
 
-async function mgConnnect() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/timelineImages');
+async function mgConnect() {
+  await mongoose.connect(
+    `mongodb+srv://${user}:${password}@${dbCluster}.mongodb.net/${dbName}`,
+  );
 };
 
 const commentSchema = new mongoose.Schema({
@@ -23,6 +30,6 @@ const imageSchema = new mongoose.Schema({
 const imageModel = mongoose.model('universeimages', imageSchema);
 
 
-mgConnnect();
+mgConnect();
 
 export = imageModel

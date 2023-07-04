@@ -144,7 +144,9 @@ const Timeline = forwardRef(
                       ></img>
                       <div id="intro">
                         <span style={{ fontSize: '1.5rem' }}>
-                          The Big Bang occurred 13.8 BILLION years ago.
+                          The Big Bang occurred 13.8{' '}
+                          <span style={{ fontSize: '1.5rem', textDecoration: "wavy underline" }}>billion</span>{' '}
+                          years ago.
                         </span>
                         <br></br>
                         <br></br> That's a difficult length of time to visualise
@@ -336,18 +338,20 @@ const Timeline = forwardRef(
               <br></br>
               <p style={{ display: 'inline' }}>
                 More information at →{' '}
-                <a href={wikiLink} target="_blank" rel='noreferrer'>
+                <a href={wikiLink} target="_blank" rel="noreferrer">
                   Wikipedia
                 </a>
               </p>
             </div>
-            <div>
-              <img
-                className="furtherinfopic"
-                src={imageURL + furtherInfoPic}
-                alt='further info'
-              ></img>
-            </div>
+            {furtherInfoPic && (
+              <div>
+                <img
+                  className="furtherinfopic"
+                  src={imageURL + furtherInfoPic}
+                  alt="further info"
+                ></img>
+              </div>
+            )}
           </div>
         </div>
       </>
