@@ -643,6 +643,8 @@ right: 2%;
 .tl-image {
   max-width: 80vw;
   width: 80vw;
+  height: 40vh;
+  object-position: bottom;
 }
 .tl-imagebox {
   /* overflow: hidden; */
