@@ -1,10 +1,21 @@
 import React, { useState, forwardRef, useEffect } from 'react';
-import { getWikiDetail, getWikiID } from '../Services/ApiClient';
+import {
+  getWikiDetail,
+  getWikiID,
+  getShorterWikiDetail,
+} from '../Services/ApiClient';
 import segmentsArr from '../universeTLsections.json';
 
 const Timeline = forwardRef(
   (
-    { imgList, setFurtherInfoShown, furtherInfoShown, bigBang, setBigBang },
+    {
+      imgList,
+      setFurtherInfoShown,
+      furtherInfoShown,
+      bigBang,
+      setBigBang,
+      isMobile,
+    },
     tlref
   ) => {
     const [counter, setCounter] = useState(0);
@@ -13,15 +24,15 @@ const Timeline = forwardRef(
     const [wikiLink, setWikiLink] = useState('');
     const [furtherInfoTitle, setFurtherInfoTitle] = useState('');
     const [furtherInfoPic, setFurtherInfoPic] = useState('');
-    
 
     // const years = 13.8 //this will be customisable for later
     // console.log(Math.round(years%1*10)/10)
 
     useEffect(() => {
       function handlePageScroll(event) {
-        let currentScroll =
-          window.scrollX / (document.body.scrollWidth - window.innerWidth);
+        let currentScroll = isMobile
+          ? window.scrollY / (document.body.scrollHeight - window.innerHeight)
+          : window.scrollX / (document.body.scrollWidth - window.innerWidth);
         const maxTime = 13800000000;
         let currentTime = Math.ceil(maxTime * currentScroll);
         maxTime <= currentTime ? setCounter(maxTime) : setCounter(currentTime);
@@ -30,7 +41,7 @@ const Timeline = forwardRef(
       return () => {
         window.removeEventListener('scroll', handlePageScroll);
       };
-    }, []);
+    }, [isMobile]);
 
     async function handleImageClick(event) {
       setFurtherInfoPic(imgList[event.target.dataset.nav].picture);
@@ -40,7 +51,11 @@ const Timeline = forwardRef(
           setWikiLink(
             'https://en.wikipedia.org/?curid=' + result.query.search[0].pageid
           );
-          return await getWikiDetail(result.query.search[0].pageid);
+          if (isMobile)
+            return await getShorterWikiDetail(result.query.search[0].pageid);
+          else {
+            return await getWikiDetail(result.query.search[0].pageid);
+          }
         })
         .then((result) => setFurtherInfoBox(result.query.pages[0].extract));
       setFurtherInfoShown(true);
@@ -94,7 +109,11 @@ const Timeline = forwardRef(
               </>
             )}
             {bigBang === 1 && <div id="singularity"></div>}
-            {bigBang < 1 && <span>Click the logo to trigger the Big Bang</span>}
+            {bigBang < 1 && (
+              <span id="cta">
+                {isMobile ? 'Tap' : 'Click'} the logo to trigger the Big Bang
+              </span>
+            )}
           </div>
         )}
 
@@ -112,20 +131,28 @@ const Timeline = forwardRef(
         </div>
 
         <main className={furtherInfoShown === true ? 'hidden' : 'shown'}>
-          <h1
-            style={{ textAlign: 'center', fontSize: '3rem', marginBottom: '0' }}
-          >
-            The History of the Universe
-          </h1>
+          <h1 id="timeline-title">The History of the Universe</h1>
+
           {imgList.length > 0 && (
             <>
-              <div id="wholeTL" style={{ width: fullwidth + 'vw' }}>
+              <div
+                id="wholeTL"
+                style={
+                  isMobile
+                    ? { height: fullwidth + 'vh' }
+                    : { width: fullwidth + 'vw' }
+                }
+              >
                 <div className="buffer">
                   <div
                     id="bigbangimgbox"
                     className="tl-imagebox"
                     key={imgList[0].id}
-                    style={{ width: imgList[0].constraint }}
+                    style={
+                      isMobile
+                        ? { height: imgList[0].constraint + 'vh' }
+                        : { width: imgList[0].constraint + 'vw' }
+                    }
                   >
                     <div
                       id="bigbangimg-and-tag"
@@ -143,13 +170,26 @@ const Timeline = forwardRef(
                         onClick={handleImageClick}
                       ></img>
                       <div id="intro">
-                        <span style={{ fontSize: '1.5rem' }}>
+                        <span
+                          style={
+                            isMobile
+                              ? { fontSize: '1.3rem' }
+                              : { fontSize: '1.5rem' }
+                          }
+                        >
                           The Big Bang occurred 13.8{' '}
                           <span
-                            style={{
-                              fontSize: '1.5rem',
-                              textDecoration: 'wavy underline',
-                            }}
+                            style={
+                              isMobile
+                                ? {
+                                    fontSize: '1.3rem',
+                                    textDecoration: 'wavy underline',
+                                  }
+                                : {
+                                    fontSize: '1.5rem',
+                                    textDecoration: 'wavy underline',
+                                  }
+                            }
                           >
                             billion
                           </span>{' '}
@@ -159,26 +199,42 @@ const Timeline = forwardRef(
                         <br></br> That's a difficult length of time to visualise
                         but this timeline is designed to help.<br></br>
                         <br></br>
-                        Use your arrow keys or the visual scrollbar below to
-                        navigate<br></br> and click any image (including this
-                        one) for more information.
+                        {isMobile
+                          ? 'Scroll'
+                          : 'Use your arrow keys or the visual scrollbar below'}{' '}
+                        to navigate{!isMobile && <br></br>} and{' '}
+                        {isMobile ? 'tap' : 'click'} any image (including this
+                        one) for more info.
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <div
-                  style={{
-                    width: compound_width + 'vw',
-                    top: '-1.5vh',
-                    left: '100vw',
-                    position: 'absolute',
-                  }}
+                  style={
+                    isMobile
+                      ? {
+                          height: compound_width + 'vh',
+                          top: '100vh',
+                          left: '-1.5vw',
+                          position: 'absolute',
+                        }
+                      : {
+                          width: compound_width + 'vw',
+                          top: '-1.5vh',
+                          left: '100vw',
+                          position: 'absolute',
+                        }
+                  }
                 >
                   {segmentsArr.map((segment) => (
                     <div
                       key={segment.timeago}
-                      style={{ left: segment.placement + '%' }}
+                      style={
+                        isMobile
+                          ? { top: segment.placement + '%' }
+                          : { left: segment.placement + '%' }
+                      }
                       className="time-marker"
                     >
                       {segment.timeago !== 0
@@ -191,7 +247,11 @@ const Timeline = forwardRef(
                 <div
                   id="uni"
                   className="timeline"
-                  style={{ width: compound_width + 'vw' }}
+                  style={
+                    isMobile
+                      ? { height: compound_width + 'vh' }
+                      : { width: compound_width + 'vw' }
+                  }
                   ref={tlref}
                 >
                   {imgList.map(
@@ -201,10 +261,17 @@ const Timeline = forwardRef(
                         <div
                           className="tl-imagebox"
                           key={image.id}
-                          style={{
-                            left: image.timeline + '%',
-                            width: image.constraint,
-                          }}
+                          style={
+                            isMobile
+                              ? {
+                                  top: image.timeline + '%',
+                                  height: image.constraint + 'vh',
+                                }
+                              : {
+                                  left: image.timeline + '%',
+                                  width: image.constraint + 'vw',
+                                }
+                          }
                         >
                           <div className="tl-image-and-tag">
                             <img
@@ -223,11 +290,19 @@ const Timeline = forwardRef(
                               <div
                                 key={index}
                                 className="comment-holder"
-                                style={{ left: comment.position + 'vw' }}
+                                style={
+                                  isMobile
+                                    ? { top: comment.position + 'vh' }
+                                    : { left: comment.position + 'vw' }
+                                }
                               >
                                 <div
                                   className="comment"
-                                  style={{ left: '45vw' }}
+                                  style={
+                                    isMobile
+                                      ? { top: '20vh' }
+                                      : { left: '45vw' }
+                                  }
                                 >
                                   {comment.text}
                                 </div>
@@ -239,88 +314,117 @@ const Timeline = forwardRef(
                 </div>
 
                 <div className="buffer">
-                  <div style={{ width: '5vw' }}></div>
-                  {imgList.map(
-                    (image) =>
-                      image.id >= imgList.length - 2 && (
-                        <div
-                          className="tl-imagebox endimgbox"
-                          key={image.id}
-                          style={{ width: image.constraint }}
-                        >
-                          <div className="tl-image-and-tag">
-                            <img
-                              className="tl-image endimg"
-                              src={'./' + image.picture}
-                              title={image.alt}
-                              alt={image.alt}
-                              draggable="false"
-                              data-nav={image.id}
-                              onClick={handleImageClick}
-                            ></img>
-                            <div className="tl-imagetag">{image.alt}</div>
-                          </div>
-                          <div
-                            style={{
-                              position: 'absolute',
-                              height: '10vh',
-                              width: '17vw',
-                              left: '6049vw',
-                              top: '45vh',
-                            }}
-                          >
-                            The first modern humans appeared around 200,000
-                            years ago, which is less than a pixel on this scale!
-                          </div>
-                          <div
-                            style={{
-                              position: 'absolute',
-                              height: '10vh',
-                              width: '20vw',
-                              left: '6074vw',
-                              top: '45vh',
-                            }}
-                          >
-                            Stonehenge was built around 5000 years ago, about
-                            the same time as the first Egyptian pyramids.
-                          </div>
-                        </div>
-                      )
-                  )}
-
-                  <div style={{ width: '20vw', marginTop: '5vh' }}>
+                  <div
+                    id="finalcomment-box"
+                    style={
+                      isMobile
+                        ? { height: '10vh' }
+                        : { width: '55%', marginTop: '0vh' }
+                    }
+                  >
                     <p
+                      id="finalcomment-p"
                       style={{
                         fontWeight: '700',
                         marginRight: '0',
                         paddingTop: '20px',
                       }}
                     >
-                      These two final events are so recent that they can't even
+                      These final two events are so recent that they can't even
                       fit on the timeline, despite being thousands of years ago,
-                      because their timescale is so tiny!
+                      because they are so tiny against the timescale!
                     </p>
                   </div>
-
-                  <button
-                    onClick={handleBackToStartClick}
-                    style={{
-                      position: 'absolute',
-                      height: '8vh',
-                      fontSize: '1rem',
-                      textAlign: 'center',
-                      cursor: 'pointer',
-                      width: '13vw',
-                      left: '6102vw',
-                      top: '45vh',
-                      backgroundColor: '#ffb700',
-                      color: '#090041',
-                      paddingLeft: '20px',
-                      paddingRight: '20px',
-                    }}
-                  >
-                    Click here to go back to the start
-                  </button>
+                  <div id="final-main">
+                    <div id="final-images-and-comments">
+                      <div id="final-images">
+                        {imgList.map(
+                          (image) =>
+                            image.id >= imgList.length - 2 && (
+                              <div
+                                className="tl-imagebox endimgbox"
+                                key={image.id}
+                                style={
+                                  isMobile
+                                    ? { height: +image.constraint + 10 + 'vh' }
+                                    : { width: image.constraint + 'vw' }
+                                }
+                              >
+                                <div className="tl-image-and-tag">
+                                  <img
+                                    className="tl-image endimg"
+                                    src={'./' + image.picture}
+                                    title={image.alt}
+                                    alt={image.alt}
+                                    draggable="false"
+                                    data-nav={image.id}
+                                    onClick={handleImageClick}
+                                  ></img>
+                                  <div className="tl-imagetag">{image.alt}</div>
+                                </div>
+                              </div>
+                            )
+                        )}
+                      </div>
+                      <div id="final-image-comments">
+                        <div
+                          style={
+                            isMobile
+                              ? {
+                                  height: '5vh',
+                                  width: '35vw',
+                                  fontSize: '0.8rem',
+                                }
+                              : {
+                                  height: '10vh',
+                                  width: '20vw',
+                                }
+                          }
+                        >
+                          The first modern humans appeared around 200,000 years
+                          ago, which is less than a pixel on this scale!
+                        </div>
+                        <div
+                          style={
+                            isMobile
+                              ? {
+                                  height: '5vh',
+                                  width: '35vw',
+                                  fontSize: '0.8rem',
+                                }
+                              : {
+                                  height: '10vh',
+                                  width: '20vw',
+                                }
+                          }
+                        >
+                          Stonehenge was built around 5000 years ago, about the
+                          same time as the first Egyptian pyramids.
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      id="backToStart"
+                      onClick={handleBackToStartClick}
+                      style={
+                        isMobile
+                          ? {
+                              width: '50vw',
+                              paddingLeft: '20px',
+                              paddingRight: '20px',
+                            }
+                          : {
+                              fontSize: '1rem',
+                              width: '13vw',
+                              marginBottom: '10vh',
+                              paddingLeft: '20px',
+                              paddingRight: '20px',
+                            }
+                      }
+                    >
+                      {isMobile ? 'Tap' : 'Click'} here to go back to the start
+                    </button>
+                  </div>
                   <div style={{ width: '5vw' }}></div>
                 </div>
               </div>
@@ -335,31 +439,80 @@ const Timeline = forwardRef(
               : 'hidden further-info'
           }
         >
-          <h3>{furtherInfoTitle}</h3>
-          <button onClick={handleButtonClick}>
-            Back to timeline <span>↑</span>
-          </button>
-          <div className="info-text">
-            <div>
-              <p>{furtherInfoBox}</p>
-              <br></br>
-              <p style={{ display: 'inline' }}>
-                More information at →{' '}
+          {isMobile ? (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '10px',
+              }}
+            >
+              <h3>{furtherInfoTitle}</h3>
+              {furtherInfoPic && (
+                <>
+                  <img
+                    className="furtherinfopic"
+                    src={'./' + furtherInfoPic}
+                    alt="further info"
+                  ></img>
+                  <div id="info-text">
+                    <p id="main-info-text">{furtherInfoBox}</p>
+                  </div>
+                </>
+              )}
+              <p className="link-text" style={{ display: 'inline' }}>
+                (More information at →{' '}
                 <a href={wikiLink} target="_blank" rel="noreferrer">
-                  Wikipedia
+                  Wikipedia)
                 </a>
               </p>
+              <button
+                style={{ position: 'relative' }}
+                onClick={handleButtonClick}
+              >
+                <span className="arrow">←</span> Back to timeline
+              </button>
             </div>
-            {furtherInfoPic && (
-              <div>
-                <img
-                  className="furtherinfopic"
-                  src={'./' + furtherInfoPic}
-                  alt="further info"
-                ></img>
+          ) : (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5vmin',
+                justifyContent: 'center',
+              }}
+            >
+              <div className="info-title-text-link">
+                <h3>{furtherInfoTitle}</h3>{' '}
+                <button
+                  style={{ position: 'relative' }}
+                  onClick={handleButtonClick}
+                >
+                  Back to timeline <span>↑</span>
+                </button>
               </div>
-            )}
-          </div>
+              <div id="info-text">
+                <p id="main-info-text">{furtherInfoBox}</p>
+                {furtherInfoPic && (
+                  <div>
+                    <img
+                      className="furtherinfopic"
+                      src={'./' + furtherInfoPic}
+                      alt="further info"
+                    ></img>
+                  </div>
+                )}
+              </div>
+              <p className="link-text" style={{ display: 'inline' }}>
+                (More information at →{' '}
+                <a href={wikiLink} target="_blank" rel="noreferrer">
+                  Wikipedia)
+                </a>
+              </p>
+              <div className="return-and-pic"></div>
+            </div>
+          )}
         </div>
       </>
     );
