@@ -300,7 +300,7 @@ const Timeline = forwardRef(
                                   className="comment"
                                   style={
                                     isMobile
-                                      ? { top: '20vh' }
+                                      ? { top: '40vh' }
                                       : { left: '45vw' }
                                   }
                                 >

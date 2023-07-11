@@ -507,6 +507,10 @@ p {
 
 @media (orientation: portrait) {
 
+  .tl-image-and-tag {
+    top: 0px
+  }
+
   button {
     font-size: 1rem;
     width: 13rem;
@@ -643,8 +647,8 @@ right: 2%;
 .tl-image {
   max-width: 80vw;
   width: 80vw;
-  height: 40vh;
-  object-position: bottom;
+  height: 25vh;
+  object-position: center;
 }
 .tl-imagebox {
   /* overflow: hidden; */
