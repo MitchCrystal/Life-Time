@@ -11,9 +11,17 @@ function App() {
   const [furtherInfoShown, setFurtherInfoShown] = useState(false);
   const [bigBang, setBigBang] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isPortrait, setIsPortrait] = useState(false);
+
   useEffect(() => {
     if (window.matchMedia('(pointer: coarse)').matches) {
       setIsMobile(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (window.matchMedia('(orientation: portrait)').matches) {
+      setIsPortrait(true);
     }
   }, []);
 
@@ -77,7 +85,7 @@ function App() {
   }, [isMobile]);
 
   useEffect(() => {
-    if (isMobile) {
+    if (!isMobile) {
       function handlePageScroll(event) {
         setPosition((window.scrollX / document.body.scrollWidth) * 100);
       }
@@ -100,11 +108,12 @@ function App() {
         bigBang={bigBang}
         setBigBang={setBigBang}
         isMobile={isMobile}
+        isPortrait={isPortrait}
       />
       {isMobile ? (
         !furtherInfoShown ? (
-          <div id="scrollindicator" style={{ display: 'block' }}>
-            ↓
+          <div id="scrollindicator">
+            {isPortrait ? "↓" : "→"}
           </div>
         ) : (
           <></>

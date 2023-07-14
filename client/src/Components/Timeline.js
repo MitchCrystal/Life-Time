@@ -15,6 +15,7 @@ const Timeline = forwardRef(
       bigBang,
       setBigBang,
       isMobile,
+      isPortrait,
     },
     tlref
   ) => {
@@ -30,7 +31,7 @@ const Timeline = forwardRef(
 
     useEffect(() => {
       function handlePageScroll(event) {
-        let currentScroll = isMobile
+        let currentScroll = isPortrait
           ? window.scrollY / (document.body.scrollHeight - window.innerHeight)
           : window.scrollX / (document.body.scrollWidth - window.innerWidth);
         const maxTime = 13800000000;
@@ -41,7 +42,7 @@ const Timeline = forwardRef(
       return () => {
         window.removeEventListener('scroll', handlePageScroll);
       };
-    }, [isMobile]);
+    }, [isPortrait]);
 
     async function handleImageClick(event) {
       setFurtherInfoPic(imgList[event.target.dataset.nav].picture);
@@ -138,7 +139,7 @@ const Timeline = forwardRef(
               <div
                 id="wholeTL"
                 style={
-                  isMobile
+                  isPortrait
                     ? { height: fullwidth + 'vh' }
                     : { width: fullwidth + 'vw' }
                 }
@@ -149,7 +150,7 @@ const Timeline = forwardRef(
                     className="tl-imagebox"
                     key={imgList[0].id}
                     style={
-                      isMobile
+                      isPortrait
                         ? { height: imgList[0].constraint + 'vh' }
                         : { width: imgList[0].constraint + 'vw' }
                     }
@@ -212,7 +213,7 @@ const Timeline = forwardRef(
 
                 <div
                   style={
-                    isMobile
+                    isPortrait
                       ? {
                           height: compound_width + 'vh',
                           top: '100vh',
@@ -231,7 +232,7 @@ const Timeline = forwardRef(
                     <div
                       key={segment.timeago}
                       style={
-                        isMobile
+                        isPortrait
                           ? { top: segment.placement + '%' }
                           : { left: segment.placement + '%' }
                       }
@@ -248,7 +249,7 @@ const Timeline = forwardRef(
                   id="uni"
                   className="timeline"
                   style={
-                    isMobile
+                    isPortrait
                       ? { height: compound_width + 'vh' }
                       : { width: compound_width + 'vw' }
                   }
@@ -262,7 +263,7 @@ const Timeline = forwardRef(
                           className="tl-imagebox"
                           key={image.id}
                           style={
-                            isMobile
+                            isPortrait
                               ? {
                                   top: image.timeline + '%',
                                   height: image.constraint + 'vh',
@@ -291,7 +292,7 @@ const Timeline = forwardRef(
                                 key={index}
                                 className="comment-holder"
                                 style={
-                                  isMobile
+                                  isPortrait
                                     ? { top: comment.position + 'vh' }
                                     : { left: comment.position + 'vw' }
                                 }
@@ -299,7 +300,7 @@ const Timeline = forwardRef(
                                 <div
                                   className="comment"
                                   style={
-                                    isMobile
+                                    isPortrait
                                       ? { top: '40vh' }
                                       : { left: '45vw' }
                                   }
@@ -317,9 +318,9 @@ const Timeline = forwardRef(
                   <div
                     id="finalcomment-box"
                     style={
-                      isMobile
+                      isPortrait
                         ? { height: '10vh' }
-                        : { width: '55%', marginTop: '0vh' }
+                        : { width: '75%', marginTop: '0vh' }
                     }
                   >
                     <p
@@ -345,7 +346,7 @@ const Timeline = forwardRef(
                                 className="tl-imagebox endimgbox"
                                 key={image.id}
                                 style={
-                                  isMobile
+                                  isPortrait
                                     ? { height: +image.constraint + 10 + 'vh' }
                                     : { width: image.constraint + 'vw' }
                                 }
@@ -369,7 +370,7 @@ const Timeline = forwardRef(
                       <div id="final-image-comments">
                         <div
                           style={
-                            isMobile
+                            isPortrait
                               ? {
                                   height: '5vh',
                                   width: '35vw',
@@ -386,7 +387,7 @@ const Timeline = forwardRef(
                         </div>
                         <div
                           style={
-                            isMobile
+                            isPortrait
                               ? {
                                   height: '5vh',
                                   width: '35vw',
@@ -406,26 +407,11 @@ const Timeline = forwardRef(
                     <button
                       id="backToStart"
                       onClick={handleBackToStartClick}
-                      style={
-                        isMobile
-                          ? {
-                              width: '50vw',
-                              paddingLeft: '20px',
-                              paddingRight: '20px',
-                            }
-                          : {
-                              fontSize: '1rem',
-                              width: '13vw',
-                              marginBottom: '10vh',
-                              paddingLeft: '20px',
-                              paddingRight: '20px',
-                            }
-                      }
                     >
                       {isMobile ? 'Tap' : 'Click'} here to go back to the start
                     </button>
                   </div>
-                  <div style={{ width: '5vw' }}></div>
+                  {/* <div style={{ width: '5vw' }}></div> */}
                 </div>
               </div>
             </>
@@ -439,7 +425,7 @@ const Timeline = forwardRef(
               : 'hidden further-info'
           }
         >
-          {isMobile ? (
+          {isPortrait ? (
             <div
               style={{
                 display: 'flex',
@@ -510,7 +496,6 @@ const Timeline = forwardRef(
                   Wikipedia)
                 </a>
               </p>
-              <div className="return-and-pic"></div>
             </div>
           )}
         </div>
