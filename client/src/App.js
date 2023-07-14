@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (window.matchMedia('(orientation: portrait)').matches) {
+    if (window.innerWidth < window.innerHeight) {
       setIsPortrait(true);
     }
   }, []);
