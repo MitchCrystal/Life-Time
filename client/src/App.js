@@ -20,9 +20,16 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (window.innerWidth < window.innerHeight) {
-      setIsPortrait(true);
+    function detectPortrait() {
+      if (window.innerWidth < window.innerHeight) {
+        setIsPortrait(true);
+      }
+      else { setIsPortrait(false) }
     }
+
+    window.addEventListener('resize', () => {
+    detectPortrait();
+  });
   }, []);
 
   // const locateMouse = useMousePosition();
@@ -99,21 +106,21 @@ function App() {
   return (
     <div className="App">
       <header className="App-header"></header>
-
-      <Timeline
-        imgList={imgList}
-        ref={tlref}
-        furtherInfoShown={furtherInfoShown}
-        setFurtherInfoShown={setFurtherInfoShown}
-        bigBang={bigBang}
-        setBigBang={setBigBang}
-        isMobile={isMobile}
-        isPortrait={isPortrait}
-      />
+      {(isMobile && !isPortrait) ? (<div style={{textAlign: "center", position: 'relative', top: "45vh"}}>Please hold your device in a portrait orientation</div>) :
+        <Timeline
+          imgList={imgList}
+          ref={tlref}
+          furtherInfoShown={furtherInfoShown}
+          setFurtherInfoShown={setFurtherInfoShown}
+          bigBang={bigBang}
+          setBigBang={setBigBang}
+          isMobile={isMobile}
+          isPortrait={isPortrait}
+        />}
       {isMobile ? (
         !furtherInfoShown ? (
           <div id="scrollindicator">
-            {isPortrait ? "↓" : "→"}
+            {isPortrait ? "↓" : ""}
           </div>
         ) : (
           <></>
