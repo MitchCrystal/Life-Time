@@ -20,6 +20,9 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (window.innerWidth < window.innerHeight) {
+      setIsPortrait(true);
+    }
     function detectPortrait() {
       if (window.innerWidth < window.innerHeight) {
         setIsPortrait(true);
@@ -29,7 +32,12 @@ function App() {
 
     window.addEventListener('resize', () => {
     detectPortrait();
-  });
+    });
+    return () => {
+      window.removeEventListener('resize', () => {
+        detectPortrait();
+      });
+    }
   }, []);
 
   // const locateMouse = useMousePosition();
