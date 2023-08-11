@@ -23,7 +23,10 @@ body {
   animation-duration: 5s;
   animation-fill-mode: forwards;
 }
-
+h3{
+margin: 0;
+font-size: 1em;
+}
 #page-title {
   color: #ffb700;
   font-size: 6rem;
@@ -374,7 +377,12 @@ main.shown {
   box-shadow: 0 0 15px 15px rgb(15, 50, 249, 0.2);
 }
 
-h3 {
+aside {
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+#titleAndTime {
   color: #ffb700;
   font-size: 2.6rem;
   display: inline;
@@ -504,6 +512,7 @@ p {
     width: 50vw;
     padding-left: 20px;
     padding-right: 20px;
+    margin-top: 1rem;
   }
   button {
     font-size: 1rem;
@@ -512,7 +521,6 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
   }
 
   .arrow {
@@ -521,7 +529,7 @@ p {
     margin-right: 0.5rem;
   }
 
-  h3 {
+  #titleAndTime {
     font-size: 1.5rem;
     width: 80vw;
     text-align: center;
@@ -530,6 +538,7 @@ p {
   }
   .furtherinfopic {
     width: 50vw;
+    object-fit: contain;
   }
   main.hidden {
     transform: translateX(-150%);
@@ -553,7 +562,7 @@ p {
 
   .further-info {
     width: 80vw;
-    height: 87vh;
+    height: 88vh;
     top: 10vw;
     right: -94%;
   }
@@ -774,7 +783,7 @@ p {
   #main-info-text, .link-text{
     font-size: 0.8rem;
   }
-  h3{
+  #titleAndTime{
     font-size: 1.5rem;
 margin: 1rem 0px;
   }

@@ -25,6 +25,7 @@ const Timeline = forwardRef(
     const [wikiLink, setWikiLink] = useState('');
     const [furtherInfoTitle, setFurtherInfoTitle] = useState('');
     const [furtherInfoPic, setFurtherInfoPic] = useState('');
+    const [furtherInfoTime, setFurtherInfoTime] = useState('');
 
     // const years = 13.8 //this will be customisable for later
     // console.log(Math.round(years%1*10)/10)
@@ -47,6 +48,17 @@ const Timeline = forwardRef(
     async function handleImageClick(event) {
       setFurtherInfoPic(imgList[event.target.dataset.nav].picture);
       setFurtherInfoTitle(event.target.alt);
+      const timeAgo =
+        (1 - imgList[event.target.dataset.nav].timeline / 100) * 13.8;
+      if (timeAgo < 0.0001) {
+        setFurtherInfoTime('5,000');
+      } else if (timeAgo < 0.001) {
+        setFurtherInfoTime(Math.round(timeAgo * 10000) * 100 + ',000');
+      } else if (timeAgo < 1) {
+        setFurtherInfoTime(Math.round(timeAgo * 1000) + ' million');
+      } else {
+        setFurtherInfoTime(Math.round(timeAgo * 10) / 10 + ' billion');
+      }
       await getWikiID(imgList[event.target.dataset.nav].wiki)
         .then(async (result) => {
           setWikiLink(
@@ -399,15 +411,12 @@ const Timeline = forwardRef(
                                 }
                           }
                         >
-                          Stonehenge was built around 5000 years ago, about the
+                          Stonehenge was built around 5,000 years ago, about the
                           same time as the first Egyptian pyramids.
                         </div>
                       </div>
                     </div>
-                    <button
-                      id="backToStart"
-                      onClick={handleBackToStartClick}
-                    >
+                    <button id="backToStart" onClick={handleBackToStartClick}>
                       {isMobile ? 'Tap' : 'Click'} here to go back to the start
                     </button>
                   </div>
@@ -434,7 +443,10 @@ const Timeline = forwardRef(
                 gap: '10px',
               }}
             >
-              <h3>{furtherInfoTitle}</h3>
+              <div id="titleAndTime">
+                <h3>{furtherInfoTitle}</h3>
+                <aside>(Approx. {furtherInfoTime} years ago)</aside>
+              </div>
               {furtherInfoPic && (
                 <>
                   <img
@@ -470,7 +482,10 @@ const Timeline = forwardRef(
               }}
             >
               <div className="info-title-text-link">
-                <h3>{furtherInfoTitle}</h3>{' '}
+                <div id="titleAndTime">
+                  <h3>{furtherInfoTitle}</h3>{' '}
+                  <aside>(Approx. {furtherInfoTime} years ago)</aside>
+                </div>
                 <button
                   style={{ position: 'relative' }}
                   onClick={handleButtonClick}

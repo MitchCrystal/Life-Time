@@ -263,21 +263,21 @@
 },{
   "id": 24,
   "picture": "24-Proconsul.webp",
-  "timeline": 99.8986,
+  "timeline": 99.86,
   "alt": "First Apes Appear",
   "wiki": "ape",
   "constraint": "5"
 },{
   "id": 25,
   "picture": "25-Image+600+H+habilis.jpg",
-  "timeline": 99.9819,
+  "timeline": 99.9855,
   "alt": "Proto-Human Ancestors Appear",
   "wiki": "homo",
   "constraint": "5"
 },{
   "id": 26,
   "picture": "26-homo sapiens.jpeg",
-  "timeline": 99.9986,
+  "timeline": 99.9985,
   "alt": "Homo Sapiens Appear",
   "wiki": "human",
   "constraint": "20"
